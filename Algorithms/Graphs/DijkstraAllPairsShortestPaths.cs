@@ -1,15 +1,16 @@
 ﻿/***
- * Computes Dijktra's shortest paths for all pairs of vertices in a graph. 
+ * Computes Dijkstra's shortest paths for all pairs of vertices in a graph. 
  * This is a wrapper class that applies single-source dijkstra shortest paths (DijkstraShortestPaths<TG, TV>) 
  * to all vertices of a graph and saves the results in a dictionary index by the vertices.
  */
 
-using System;
-using System.Collections.Generic;
-using DataStructures.Graphs;
-
 namespace Algorithms.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Graphs;
+
     public class DijkstraAllPairsShortestPaths<TGraph, TVertex>
         where TGraph : IGraph<TVertex>, IWeightedGraph<TVertex>
         where TVertex : IComparable<TVertex>

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using DataStructures.Lists;
-
-namespace Algorithms.Sorting
+﻿namespace Algorithms.Sorting
 {
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+
     /// <summary>
     /// Implements this Insertion Sort algorithm over ArrayLists.
     /// </summary>

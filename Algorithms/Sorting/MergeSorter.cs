@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Algorithms.Common;
-
-namespace Algorithms.Sorting
+﻿namespace Algorithms.Sorting
 {
+    using System.Collections.Generic;
+
     public static class MergeSorter
     {
         //
@@ -30,10 +29,10 @@ namespace Algorithms.Sorting
             var leftCollection = collection.GetRange(0, midIndex);
             var rightCollection = collection.GetRange(midIndex, collection.Count - midIndex);
 
-            leftCollection = InternalMergeSort<T>(leftCollection, comparer);
-            rightCollection = InternalMergeSort<T>(rightCollection, comparer);
+            leftCollection = InternalMergeSort(leftCollection, comparer);
+            rightCollection = InternalMergeSort(rightCollection, comparer);
 
-            return InternalMerge<T>(leftCollection, rightCollection, comparer);
+            return InternalMerge(leftCollection, rightCollection, comparer);
         }
 
 

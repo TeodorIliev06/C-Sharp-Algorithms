@@ -1,8 +1,9 @@
-﻿using System;
-using Algorithms.Common;
-
-namespace Algorithms.Strings
+﻿namespace Algorithms.Strings
 {
+    using System;
+
+    using Algorithms.Common;
+
     /// <summary>
     /// Edit Distance Costs Map.
     /// Helper class used with the EditDistance class.

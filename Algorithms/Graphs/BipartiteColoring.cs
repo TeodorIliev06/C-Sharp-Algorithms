@@ -11,13 +11,13 @@
  *  * Implement the OddCycle method, which will return an enumerator over the odd cycle, if exists.
  */
 
-using System;
-using System.Collections.Generic;
-
-using DataStructures.Graphs;
-
 namespace Algorithms.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Graphs;
+
     /// <summary>
     /// The Bipartite Colors type.
     /// </summary>
@@ -25,7 +25,7 @@ namespace Algorithms.Graphs
     {
         Red = 0, 
         Blue = 1
-    };
+    }
 
 
     /// <summary>

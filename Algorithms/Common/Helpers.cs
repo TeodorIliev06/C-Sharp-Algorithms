@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using DataStructures.Lists;
-
-namespace Algorithms.Common
+﻿namespace Algorithms.Common
 {
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+
     public static class Helpers
     {
         /// <summary>
@@ -13,9 +14,7 @@ namespace Algorithms.Common
             if (list.Count < 2 || firstIndex == secondIndex)   //This check is not required but Partition function may make many calls so its for perf reason
                 return;
 
-            var temp = list[firstIndex];
-            list[firstIndex] = list[secondIndex];
-            list[secondIndex] = temp;
+            (list[firstIndex], list[secondIndex]) = (list[secondIndex], list[firstIndex]);
         }
 
         /// <summary>
@@ -26,9 +25,7 @@ namespace Algorithms.Common
             if (list.Count < 2 || firstIndex == secondIndex)   //This check is not required but Partition function may make many calls so its for perf reason
                 return;
 
-            var temp = list[firstIndex];
-            list[firstIndex] = list[secondIndex];
-            list[secondIndex] = temp;
+            (list[firstIndex], list[secondIndex]) = (list[secondIndex], list[firstIndex]);
         }
 
         /// <summary>

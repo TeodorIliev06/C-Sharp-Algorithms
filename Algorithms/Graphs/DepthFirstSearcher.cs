@@ -9,18 +9,18 @@
  * The VisitAll() applies a function to every graph node. The FindFirstMatch() function searches the graph for a predicate match.
  */
 
-using System;
-using System.Collections.Generic;
-
-using DataStructures.Graphs;
-
 namespace Algorithms.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Graphs;
+
     public static class DepthFirstSearcher
     {
         /// <summary>
         /// DFS Recursive Helper function. 
-        /// Visits the neighbors of a given vertex recusively, and applies the given Action<T> to each one of them.
+        /// Visits the neighbors of a given vertex recursively, and applies the given Action<T> to each one of them.
         /// </summary>
         private static void _visitNeighbors<T>(T Vertex, ref IGraph<T> Graph, ref Dictionary<T, object> Parents, Action<T> Action) where T : IComparable<T>
         {
@@ -98,7 +98,7 @@ namespace Algorithms.Graphs
                 if (!visited.Contains(current))
                 {
                     // DFS VISIT NODE STEP
-                    Console.Write(String.Format("({0}) ", current));
+                    Console.Write("({0}) ", current);
                     visited.Add(current);
 
                     // Get the adjacent nodes of current

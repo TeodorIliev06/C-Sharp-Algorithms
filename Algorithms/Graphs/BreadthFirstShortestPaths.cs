@@ -3,15 +3,15 @@
  * It provides the capability to find shortest-paths from a single-source and multiple-sources, in addition to looking up reachable and unreachable nodes.
  */
 
-using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-
-using Algorithms.Common;
-using DataStructures.Graphs;
-
 namespace Algorithms.Graphs
 {
+    using System;
+    using System.Diagnostics;
+    using System.Collections.Generic;
+
+    using Algorithms.Common;
+    using DataStructures.Graphs;
+
     public class BreadthFirstShortestPaths<T> where T : IComparable<T>
     {
         private int _edgesCount { get; set; }

@@ -1,11 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-using Algorithms.Common;
-using DataStructures.Graphs;
-
-namespace Algorithms.Graphs
+﻿namespace Algorithms.Graphs
 {
+    using System;
+    using System.Diagnostics;
+    using System.Collections.Generic;
+
+    using Algorithms.Common;
+    using DataStructures.Graphs;
+
     public class BellmanFordShortestPaths<TGraph, TVertex>
         where TGraph : IGraph<TVertex>, IWeightedGraph<TVertex>
         where TVertex : IComparable<TVertex>
@@ -37,21 +38,21 @@ namespace Algorithms.Graphs
         {
             if (Graph == null) {
                 throw new ArgumentNullException ();
-            } else {
-                if (!Graph.HasVertex (Source))
-                    throw new ArgumentException ("The source vertex doesn't belong to graph.");
-
-                // Init
-                _initializeDataMembers (Graph);
-
-                // Traverse the graph
-                var status = _bellmanFord (Graph, Source);
-
-                if (status == false)
-                    throw new Exception ("Negative-weight cycle detected.");
-
-                Debug.Assert (_checkOptimalityConditions (Graph, Source));
             }
+
+            if (!Graph.HasVertex (Source))
+                throw new ArgumentException ("The source vertex doesn't belong to graph.");
+
+            // Init
+            _initializeDataMembers (Graph);
+
+            // Traverse the graph
+            var status = _bellmanFord (Graph, Source);
+
+            if (status == false)
+                throw new Exception ("Negative-weight cycle detected.");
+
+            Debug.Assert (_checkOptimalityConditions (Graph, Source));
         }
 
 

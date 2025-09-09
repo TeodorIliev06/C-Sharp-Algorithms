@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Algorithms.Sorting
+﻿namespace Algorithms.Sorting
 {
+    using System.Collections.Generic;
+
     public static class CycleSorter
     {
 

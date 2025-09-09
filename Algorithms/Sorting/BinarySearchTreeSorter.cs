@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Algorithms.Common;
-
-namespace Algorithms.Sorting
+﻿namespace Algorithms.Sorting
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Algorithms.Common;
+
     public static class BinarySearchTreeSorter
     {
         /// <summary>
@@ -17,18 +17,18 @@ namespace Algorithms.Sorting
             if (collection.Count == 0)
                 return;
 
-            Node<T> treeRoot = new Node<T>() { Value = collection[0] };
+            Node<T> treeRoot = new Node<T> { Value = collection[0] };
 
             // Get a handle on root.
             for (int i = 1; i < collection.Count; ++i)
             {
                 var currentNode = treeRoot;
-                var newNode = new Node<T>() { Value = collection[i] };
+                var newNode = new Node<T> { Value = collection[i] };
 
                 while (true)
                 {
                     // Go left
-                    if (newNode.Value.IsLessThan<T>(currentNode.Value))
+                    if (newNode.Value.IsLessThan(currentNode.Value))
                     {
                         if (currentNode.Left == null)
                         {
@@ -74,9 +74,9 @@ namespace Algorithms.Sorting
             if (currentNode == null)
                 return;
 
-            _inOrderTravelAndAdd<T>(currentNode.Left, ref collection);
+            _inOrderTravelAndAdd(currentNode.Left, ref collection);
             collection.Add(currentNode.Value);
-            _inOrderTravelAndAdd<T>(currentNode.Right, ref collection);
+            _inOrderTravelAndAdd(currentNode.Right, ref collection);
         }
 
 
@@ -102,7 +102,7 @@ namespace Algorithms.Sorting
             public int CompareTo(Node<T> other)
             {
                 if (other == null) return -1;
-                return this.Value.CompareTo(other.Value);
+                return Value.CompareTo(other.Value);
             }
         }
     }

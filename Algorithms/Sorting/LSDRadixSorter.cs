@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Algorithms.Sorting
+﻿namespace Algorithms.Sorting
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// LSD (Least Significat Digit) Radix Sort.
     ///

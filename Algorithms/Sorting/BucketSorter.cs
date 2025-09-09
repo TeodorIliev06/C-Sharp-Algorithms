@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Algorithms.Sorting
+﻿namespace Algorithms.Sorting
 {
+    using System.Linq;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Only support IList<int> Sort
     /// </summary>

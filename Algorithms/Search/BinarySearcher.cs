@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Algorithms.Sorting;
-
-namespace Algorithms.Search
+﻿namespace Algorithms.Search
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using Algorithms.Sorting;
+
     public class BinarySearcher<T> : IEnumerator<T>
     {
         private readonly IList<T> _collection;
@@ -40,7 +41,7 @@ namespace Algorithms.Search
             }
             _collection = collection;
             _comparer = comparer;
-            HeapSorter.HeapSort(_collection);
+            _collection.HeapSort();
         }
 
         /// <summary>
@@ -77,7 +78,7 @@ namespace Algorithms.Search
         /// <returns>true if iteration can proceed to the next item, false otherwise</returns>
         public bool MoveNext()
         {
-            _currentItemIndex = this._leftIndex + (this._rightIndex - this._leftIndex) / 2;
+            _currentItemIndex = _leftIndex + (_rightIndex - _leftIndex) / 2;
 
             if (_comparer.Compare(_item, Current) < 0)
             {
@@ -96,7 +97,7 @@ namespace Algorithms.Search
 
         public void Reset()
         { 
-            this._currentItemIndex = -1;
+            _currentItemIndex = -1;
             _leftIndex = 0;
             _rightIndex = _collection.Count - 1;
         }

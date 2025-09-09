@@ -7,13 +7,13 @@
  * * Compute: Returns a list of lists of nodes. Each inner list represents a connected component of nodes.
  */
 
-using System;
-using System.Collections.Generic;
-
-using DataStructures.Graphs;
-
 namespace Algorithms.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Graphs;
+
     public static class ConnectedComponents
     {
         /// <summary>
@@ -56,7 +56,7 @@ namespace Algorithms.Graphs
             // Validate the graph parameter
             if (Graph == null)
                 throw new ArgumentNullException();
-            if (Graph.IsDirected == true)
+            if (Graph.IsDirected)
                 throw new NotSupportedException("Directed Graphs are not supported.");
             if(Graph.VerticesCount == 0)
                 return components;
@@ -64,7 +64,7 @@ namespace Algorithms.Graphs
             // Get connected components using BFS
             foreach(var vertex in Graph.Vertices)
                 if(!visited.Contains(vertex))
-                    components.Add(_bfsConnectedComponent<TVertex>(Graph, vertex, ref visited));
+                    components.Add(_bfsConnectedComponent(Graph, vertex, ref visited));
 
             return components;
         }

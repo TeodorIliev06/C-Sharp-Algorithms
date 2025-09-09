@@ -2,13 +2,14 @@
  * Detects if a given graph is cyclic. Supports directed and undirected graphs.
  */
 
-using System;
-using System.Collections.Generic;
-using Algorithms.Common;
-using DataStructures.Graphs;
-
 namespace Algorithms.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Algorithms.Common;
+    using DataStructures.Graphs;
+
     /// <summary>
     /// Implements Cycles Detection in Graphs
     /// </summary>
@@ -34,11 +35,11 @@ namespace Algorithms.Graphs
                 foreach (var adjacent in graph.Neighbours(source))
                 {
                     // If an adjacent node was not visited, then check the DFS forest of the adjacent for UNdirected cycles.
-                    if (!visited.Contains(adjacent) && _isUndirectedCyclic<T>(graph, adjacent, source, ref visited))
+                    if (!visited.Contains(adjacent) && _isUndirectedCyclic(graph, adjacent, source, ref visited))
                         return true;
 
                     // If an adjacent is visited and NOT parent of current vertex, then there is a cycle.
-                    if (parent != (object)null && !adjacent.IsEqualTo((T)parent))
+                    if (parent != null && !adjacent.IsEqualTo((T)parent))
                         return true;
                 }
             }
@@ -68,7 +69,7 @@ namespace Algorithms.Graphs
                 foreach (var adjacent in graph.Neighbours(source))
                 {
                     // If an adjacent node was not visited, then check the DFS forest of the adjacent for directed cycles.
-                    if (!visited.Contains(adjacent) && _isDirectedCyclic<T>(graph, adjacent, ref visited, ref recursionStack))
+                    if (!visited.Contains(adjacent) && _isDirectedCyclic(graph, adjacent, ref visited, ref recursionStack))
                         return true;
 
                     // If an adjacent is visited and is on the recursion stack then there is a cycle.
@@ -97,13 +98,13 @@ namespace Algorithms.Graphs
             if (Graph.IsDirected)
             {
                 foreach (var vertex in Graph.Vertices)
-                    if (_isDirectedCyclic<T>(Graph, vertex, ref visited, ref recursionStack))
+                    if (_isDirectedCyclic(Graph, vertex, ref visited, ref recursionStack))
                         return true;
             }
             else
             {
                 foreach (var vertex in Graph.Vertices)
-                    if (_isUndirectedCyclic<T>(Graph, vertex, null, ref visited))
+                    if (_isUndirectedCyclic(Graph, vertex, null, ref visited))
                         return true;
             }
 

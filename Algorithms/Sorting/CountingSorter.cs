@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Algorithms.Common;
-
-namespace Algorithms.Sorting
+﻿namespace Algorithms.Sorting
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Algorithms.Common;
+
     public static class CountingSorter
     {
         public static void CountingSort(this IList<int> collection)

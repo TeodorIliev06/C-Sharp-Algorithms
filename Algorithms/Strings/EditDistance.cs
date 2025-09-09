@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Algorithms.Strings
+﻿namespace Algorithms.Strings
 {
+    using System;
+
     /// <summary>
     /// The Edit Distance computation algorithm.
     /// Uses a custom class for receiving the costs.
@@ -66,7 +66,7 @@ namespace Algorithms.Strings
                 deletionCost: Convert.ToInt64(distances.DeletionCost),
                 substitutionCost: Convert.ToInt64(distances.InsertionCost));
 
-            return Convert.ToInt32(EditDistance.GetMinDistance(source, destination, longDistance));
+            return Convert.ToInt32(GetMinDistance(source, destination, longDistance));
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Algorithms.Strings
                 deletionCost: Convert.ToInt64(distances.DeletionCost),
                 substitutionCost: Convert.ToInt64(distances.InsertionCost));
 
-            return Convert.ToInt16(EditDistance.GetMinDistance(source, destination, longDistance));
+            return Convert.ToInt16(GetMinDistance(source, destination, longDistance));
         }
     }
 

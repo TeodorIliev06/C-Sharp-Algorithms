@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Algorithms.Numeric
+﻿namespace Algorithms.Numeric
 {
+    using System;
+
     public static class GreatestCommonDivisor
     {
         /// <summary>
@@ -53,10 +53,8 @@ namespace Algorithms.Numeric
                 {
                     return Stein(a >> 1, b);
                 }
-                else
-                {
-                    return Stein(a >> 1, b >> 1) << 1;
-                }
+
+                return Stein(a >> 1, b >> 1) << 1;
             }
 
             if ((~b & 1) == 1)

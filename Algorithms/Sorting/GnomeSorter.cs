@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using Algorithms.Common;
-
-namespace Algorithms.Sorting
+﻿namespace Algorithms.Sorting
 {
+    using System.Collections.Generic;
+
+    using Algorithms.Common;
+
     /// <summary>
     /// Also called Stupid Sort
     /// </summary>

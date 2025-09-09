@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
 
 /***
 * Generates all prime numbers up to a given number
@@ -10,6 +8,10 @@ using System.Linq;
 
 namespace Algorithms.Numeric
 {
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+
     public static class SieveOfEratosthenes
     {
         /// <summary>

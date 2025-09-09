@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Algorithms.Common
+﻿namespace Algorithms.Common
 {
+    using System;
+
     public static class Comparers
     {
         /// <summary>

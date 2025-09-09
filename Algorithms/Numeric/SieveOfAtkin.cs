@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Tasks;
+﻿
 
 /***
 * Generates all prime numbers up to a given number
@@ -10,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace Algorithms.Numeric
 {
+    using System;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
     public static class SieveOfAtkin
     {
         /// <summary>
@@ -19,7 +21,7 @@ namespace Algorithms.Numeric
         {
             if (max == 2)
             {
-                return new List<int>() { 2 };
+                return new List<int> { 2 };
             }
 
             if (max < 2)
@@ -28,7 +30,7 @@ namespace Algorithms.Numeric
             }
 
             var isPrime = new bool[max + 1];
-            var sqrt = (int)System.Math.Sqrt(max);
+            var sqrt = (int)Math.Sqrt(max);
 
             Parallel.For(1, sqrt, x =>
             {
@@ -50,7 +52,7 @@ namespace Algorithms.Numeric
                 }
             });
 
-            var primes = new List<int>() { 2, 3 };
+            var primes = new List<int> { 2, 3 };
             for (var n = 5; n <= sqrt; n++)
             {
                 if (isPrime[n])

@@ -1,5 +1,5 @@
 ﻿/***
- * Implements the the Breadth-First Search algorithm. 
+ * Implements the Breadth-First Search algorithm. 
  * 
  * Provides multiple functions for traversing graphs: 
  *  1. PrintAll(), 
@@ -9,13 +9,13 @@
  * The VisitAll() applies a function to every graph node. The FindFirstMatch() function searches the graph for a predicate match.
  */
 
-using System;
-using System.Collections.Generic;
-
-using DataStructures.Graphs;
-
 namespace Algorithms.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Graphs;
+
     public static class BreadthFirstSearcher
     {
         /// <summary>
@@ -40,7 +40,7 @@ namespace Algorithms.Graphs
             while (queue.Count > 0)
             {
                 var current = queue.Dequeue();
-                Console.Write(String.Format("({0}) ", current));
+                Console.Write("({0}) ", current);
 
                 foreach (var adjacent in Graph.Neighbours(current))
                 {

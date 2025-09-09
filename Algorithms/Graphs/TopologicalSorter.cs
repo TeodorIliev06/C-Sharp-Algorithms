@@ -3,12 +3,13 @@
  * This class depends on the CyclesDetector static class.
  */
 
-using System;
-using System.Collections.Generic;
-using DataStructures.Graphs;
-
 namespace Algorithms.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Graphs;
+
     public static class TopologicalSorter
     {
         /// <summary>
@@ -20,7 +21,7 @@ namespace Algorithms.Graphs
 
             foreach (var adjacent in graph.Neighbours(source))
                 if (!visited.Contains(adjacent))
-                    _topoSortHelper<T>(graph, adjacent, ref topoSortStack, ref visited);
+                    _topoSortHelper(graph, adjacent, ref topoSortStack, ref visited);
 
             topoSortStack.Push(source);
         }
@@ -34,7 +35,7 @@ namespace Algorithms.Graphs
             // If the graph is either null or is not a DAG, throw exception.
             if (Graph == null)
                 throw new ArgumentNullException();
-            if (!Graph.IsDirected || CyclesDetector.IsCyclic<T>(Graph))
+            if (!Graph.IsDirected || CyclesDetector.IsCyclic(Graph))
                 throw new Exception("The graph is not a DAG.");
 
             var visited = new HashSet<T>();
@@ -42,7 +43,7 @@ namespace Algorithms.Graphs
 
             foreach (var vertex in Graph.Vertices)
                 if (!visited.Contains(vertex))
-                    _topoSortHelper<T>(Graph, vertex, ref topoSortStack, ref visited);
+                    _topoSortHelper(Graph, vertex, ref topoSortStack, ref visited);
 
             return topoSortStack;
         }

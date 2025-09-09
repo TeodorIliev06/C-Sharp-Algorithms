@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using Algorithms.Common;
-
-namespace Algorithms.Sorting
+﻿namespace Algorithms.Sorting
 {
+    using System.Collections.Generic;
+
+    using Algorithms.Common;
+
     public static class CombSorter
     {
         public static void CombSort<T>(this IList<T> collection, Comparer<T> comparer = null)

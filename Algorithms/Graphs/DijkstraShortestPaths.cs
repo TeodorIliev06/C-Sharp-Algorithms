@@ -1,11 +1,12 @@
-﻿using DataStructures.Graphs;
-using DataStructures.Heaps;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Algorithms.Graphs
+﻿namespace Algorithms.Graphs
 {
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using DataStructures.Heaps;
+    using DataStructures.Graphs;
+
     /// <summary>
     ///     Computes Dijkstra's Shortest-Paths for Directed Weighted Graphs from a single-source to all destinations.
     /// </summary>

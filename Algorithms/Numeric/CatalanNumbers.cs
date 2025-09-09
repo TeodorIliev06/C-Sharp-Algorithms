@@ -4,12 +4,12 @@
  * Wikipedia: https://en.wikipedia.org/wiki/Catalan_number
  */
 
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Numerics;
-
 namespace Algorithms.Numeric
 {
+    using System.Numerics;
+    using System.Diagnostics;
+    using System.Collections.Generic;
+
     public static class CatalanNumbers
     {
         /// <summary>

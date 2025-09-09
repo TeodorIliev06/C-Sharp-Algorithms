@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Numerics;
-
-namespace Algorithms.Numeric
+﻿namespace Algorithms.Numeric
 {
+    using System.Numerics;
+    using System.Collections.Generic;
+
     public static class BinomialCoefficients
     {
         private static readonly Dictionary<uint, BigInteger> Cache = new Dictionary<uint, BigInteger>();
