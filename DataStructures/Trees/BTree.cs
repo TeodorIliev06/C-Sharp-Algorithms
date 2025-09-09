@@ -11,7 +11,7 @@ namespace DataStructures.Trees
     {
         private int _count { get; set; }
         private BTreeNode<T> _root { get; set; }
-        private int _minDegree;
+        private readonly int _minDegree;
 
         /// <summary>
         /// CONSTRUCTOR.
@@ -102,7 +102,7 @@ namespace DataStructures.Trees
     {
         private BTreeNode<T> _parent;
         private List<BTreeNode<T>> _children;
-        private int _degree;
+        private readonly int _degree;
         private List<T> _keys;
 
         public BTreeNode(int degree)

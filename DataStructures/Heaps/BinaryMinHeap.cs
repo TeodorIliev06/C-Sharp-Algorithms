@@ -16,7 +16,7 @@ namespace DataStructures.Heaps
         /// _collection: The list of elements. Implemented as an array-based list with auto-resizing.
         /// </summary>
         private ArrayList<T> _collection { get; set; }
-        private Comparer<T> _heapComparer = Comparer<T>.Default;
+        private readonly Comparer<T> _heapComparer = Comparer<T>.Default;
 
 
         /// <summary>

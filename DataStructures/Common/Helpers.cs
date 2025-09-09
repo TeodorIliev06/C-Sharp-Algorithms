@@ -14,9 +14,7 @@ namespace DataStructures.Common
             if (list.Count < 2 || firstIndex == secondIndex)   //This check is not required but Partition function may make many calls so its for perf reason
                 return;
 
-            var temp = list[firstIndex];
-            list[firstIndex] = list[secondIndex];
-            list[secondIndex] = temp;
+            (list[firstIndex], list[secondIndex]) = (list[secondIndex], list[firstIndex]);
         }
 
         /// <summary>
@@ -27,9 +25,7 @@ namespace DataStructures.Common
             if (list.Count < 2 || firstIndex == secondIndex)   //This check is not required but Partition function may make many calls so its for perf reason
                 return;
 
-            var temp = list[firstIndex];
-            list[firstIndex] = list[secondIndex];
-            list[secondIndex] = temp;
+            (list[firstIndex], list[secondIndex]) = (list[secondIndex], list[firstIndex]);
         }
 
         /// <summary>

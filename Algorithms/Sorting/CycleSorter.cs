@@ -35,9 +35,7 @@
                             to++;
                         }
 
-                        T temp = collection[to];
-                        collection[to] = item;
-                        item = temp;
+                        (collection[to], item) = (item, collection[to]);
                         position = to;
                     }
                 } while (position != cycleStart);
@@ -68,9 +66,7 @@
                             to++;
                         }
 
-                        T temp = collection[to];
-                        collection[to] = item;
-                        item = temp;
+                        (collection[to], item) = (item, collection[to]);
                         position = to;
                     }
                 } while (position != cycleStart);

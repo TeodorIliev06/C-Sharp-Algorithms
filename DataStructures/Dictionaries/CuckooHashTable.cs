@@ -49,13 +49,13 @@ namespace DataStructures.Dictionaries
         internal readonly PrimesList PRIMES = PrimesList.Instance;
 
         // Random number generator
-        private Random _randomizer;
+        private readonly Random _randomizer;
 
         private int _size { get; set; }
         private int _numberOfRehashes { get; set; }
         private CHashEntry<TKey, TValue>[] _collection { get; set; }
         private UniversalHashingFamily _universalHashingFamily { get; set; }
-        private EqualityComparer<TKey> _equalityComparer = EqualityComparer<TKey>.Default;
+        private readonly EqualityComparer<TKey> _equalityComparer = EqualityComparer<TKey>.Default;
 
         // The C# Maximum Array Length (before encountering overflow)
         // Reference: http://referencesource.microsoft.com/#mscorlib/system/array.cs,2d2b551eabe74985
@@ -227,10 +227,7 @@ namespace DataStructures.Dictionaries
                     // SWAP ENTRY
                     lastPosition = position;
 
-                    var temp = _collection[position];
-                    _collection[position] = newEntry;
-                    newEntry = temp;
-
+                    (_collection[position], newEntry) = (newEntry, _collection[position]);
                 }//end-for
 
                 if (++_numberOfRehashes > ALLOWED_REHASHES)

@@ -18,7 +18,7 @@ namespace Algorithms.Graphs
         /// <summary>
         /// INSTANCE VARIABLES
         /// </summary>
-        Dictionary<TVertex, DijkstraShortestPaths<TGraph, TVertex>> _allPairsDjkstra;
+        readonly Dictionary<TVertex, DijkstraShortestPaths<TGraph, TVertex>> _allPairsDijkstra;
 
 
         /// <summary>
@@ -30,14 +30,14 @@ namespace Algorithms.Graphs
                 throw new ArgumentNullException();
 
             // Initialize the all pairs dictionary
-            _allPairsDjkstra = new Dictionary<TVertex, DijkstraShortestPaths<TGraph, TVertex>>();
+            _allPairsDijkstra = new Dictionary<TVertex, DijkstraShortestPaths<TGraph, TVertex>>();
 
             var vertices = Graph.Vertices;
 
             foreach (var vertex in vertices)
             {
                 var dijkstra = new DijkstraShortestPaths<TGraph, TVertex>(Graph, vertex);
-                _allPairsDjkstra.Add(vertex, dijkstra);
+                _allPairsDijkstra.Add(vertex, dijkstra);
             }
         }
 
@@ -47,10 +47,10 @@ namespace Algorithms.Graphs
         /// </summary>
         public bool HasPath(TVertex source, TVertex destination)
         {
-            if (!_allPairsDjkstra.ContainsKey(source) || !_allPairsDjkstra.ContainsKey(destination))
+            if (!_allPairsDijkstra.ContainsKey(source) || !_allPairsDijkstra.ContainsKey(destination))
                 throw new Exception("Either one of the vertices or both of them don't belong to Graph.");
 
-            return _allPairsDjkstra[source].HasPathTo(destination);
+            return _allPairsDijkstra[source].HasPathTo(destination);
         }
 
         /// <summary>
@@ -58,10 +58,10 @@ namespace Algorithms.Graphs
         /// </summary>
         public long PathDistance(TVertex source, TVertex destination)
         {
-            if (!_allPairsDjkstra.ContainsKey(source) || !_allPairsDjkstra.ContainsKey(destination))
+            if (!_allPairsDijkstra.ContainsKey(source) || !_allPairsDijkstra.ContainsKey(destination))
                 throw new Exception("Either one of the vertices or both of them don't belong to Graph.");
 
-            return _allPairsDjkstra[source].DistanceTo(destination);
+            return _allPairsDijkstra[source].DistanceTo(destination);
         }
 
         /// <summary>
@@ -69,10 +69,10 @@ namespace Algorithms.Graphs
         /// </summary>
         public IEnumerable<TVertex> ShortestPath(TVertex source, TVertex destination)
         {
-            if (!_allPairsDjkstra.ContainsKey(source) || !_allPairsDjkstra.ContainsKey(destination))
+            if (!_allPairsDijkstra.ContainsKey(source) || !_allPairsDijkstra.ContainsKey(destination))
                 throw new Exception("Either one of the vertices or both of them don't belong to Graph.");
 
-            return _allPairsDjkstra[source].ShortestPathTo(destination);
+            return _allPairsDijkstra[source].ShortestPathTo(destination);
         }
 
     }

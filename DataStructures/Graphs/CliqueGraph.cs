@@ -48,12 +48,12 @@ namespace DataStructures.Graphs
         /// <summary>
         /// Vertices of the graph.
         /// </summary>
-        ICollection<T> _vertices = new HashSet<T>();
+        readonly ICollection<T> _vertices = new HashSet<T>();
 
         /// <summary>
         /// A set of cliques minimal with the hability of charaterize the graph.
         /// </summary>
-        ISet<Clique> _cliques = new HashSet<Clique>();
+        readonly ISet<Clique> _cliques = new HashSet<Clique>();
 
         #endregion
 

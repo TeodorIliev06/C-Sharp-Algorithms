@@ -51,9 +51,7 @@
                 {
                     if (comparer.Compare(list[j], list[j - 1]) < 0) //(j)th is less than (j-1)th
                     {
-                        var temp = list[j - 1];
-                        list[j - 1] = list[j];
-                        list[j] = temp;
+                        (list[j - 1], list[j]) = (list[j], list[j - 1]);
                     }
                 }
             }

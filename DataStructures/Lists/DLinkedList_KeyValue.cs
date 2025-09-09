@@ -802,9 +802,7 @@ namespace DataStructures.Lists
                 {
                     if (nextNode.Key.IsLessThan(currentNode.Key))
                     {
-                        var temp = nextNode.Key;
-                        nextNode.Key = currentNode.Key;
-                        currentNode.Key = temp;
+                        (nextNode.Key, currentNode.Key) = (currentNode.Key, nextNode.Key);
                     }
 
                     nextNode = nextNode.Next;

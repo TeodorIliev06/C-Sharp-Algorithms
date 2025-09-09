@@ -366,9 +366,7 @@ namespace DataStructures.Lists
 
                 if (minNode != currentNode)
                 {
-                    var temp = minNode.Data;
-                    minNode.Data = currentNode.Data;
-                    currentNode.Data = temp;
+                    (minNode.Data, currentNode.Data) = (currentNode.Data, minNode.Data);
                 }
                 currentNode = currentNode.Next;
             }

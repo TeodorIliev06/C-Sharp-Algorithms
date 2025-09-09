@@ -23,7 +23,7 @@ namespace DataStructures.Trees
     {
         private int _count { get; set; }
         private TrieMapNode<TRecord> _root { get; set; }
-        private EqualityComparer<TRecord> _recordsComparer = EqualityComparer<TRecord>.Default;
+        private readonly EqualityComparer<TRecord> _recordsComparer = EqualityComparer<TRecord>.Default;
 
         /// <summary>
         /// CONSTRUCTOR
