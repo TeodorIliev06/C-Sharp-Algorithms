@@ -6,11 +6,12 @@
  * Supports re-generation of functions.
  */
 
-using System;
-using DataStructures.Common;
-
 namespace DataStructures.Hashing
 {
+    using System;
+
+    using DataStructures.Common;
+
     /// <summary>
     /// Implements a family of randomized Hash Functions
     /// </summary>

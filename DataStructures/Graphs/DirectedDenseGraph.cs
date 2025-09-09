@@ -10,20 +10,20 @@
  * Implements the IGraph<T> interface.
  */
 
-using System;
-using System.Collections.Generic;
-
-using DataStructures.Common;
-using DataStructures.Lists;
-
 namespace DataStructures.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+    using DataStructures.Common;
+
     public class DirectedDenseGraph<T> : IGraph<T> where T : IComparable<T>
     {
         /// <summary>
         /// INSTANCE VARIABLES
         /// </summary>
-        private const object EMPTY_VERTEX_SLOT = (object)null;
+        private const object EMPTY_VERTEX_SLOT = null;
 
         protected virtual int _edgesCount { get; set; }
         protected virtual int _verticesCount { get; set; }
@@ -53,7 +53,7 @@ namespace DataStructures.Graphs
         /// </summary>
         protected virtual bool _doesEdgeExist(int source, int destination)
         {
-            return (_adjacencyMatrix[source, destination] == true);
+            return _adjacencyMatrix[source, destination];
         }
 
         /// <summary>
@@ -104,17 +104,17 @@ namespace DataStructures.Graphs
 
         IEnumerable<IEdge<T>> IGraph<T>.Edges
         {
-            get { return this.Edges; }
+            get { return Edges; }
         }
 
         IEnumerable<IEdge<T>> IGraph<T>.IncomingEdges(T vertex)
         {
-            return this.IncomingEdges(vertex);
+            return IncomingEdges(vertex);
         }
 
         IEnumerable<IEdge<T>> IGraph<T>.OutgoingEdges(T vertex)
         {
-            return this.OutgoingEdges(vertex);
+            return OutgoingEdges(vertex);
         }
 
 
@@ -337,7 +337,7 @@ namespace DataStructures.Graphs
         /// <summary>
         /// Returns the neighbours doubly-linked list for the specified vertex.
         /// </summary>
-        public virtual DataStructures.Lists.DLinkedList<T> Neighbours(T vertex)
+        public virtual DLinkedList<T> Neighbours(T vertex)
         {
             var neighbors = new DLinkedList<T>();
             int source = _vertices.IndexOf(vertex);
@@ -383,7 +383,7 @@ namespace DataStructures.Graphs
                     adjacents = String.Format("{0}{1},", adjacents, adjacentNode);
 
                 if (adjacents.Length > 0)
-                    adjacents = adjacents.TrimEnd(new char[] { ',', ' ' });
+                    adjacents = adjacents.TrimEnd(',', ' ');
 
                 output = String.Format("{0}{1}]", output, adjacents);
             }

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DataStructures.Trees
+﻿namespace DataStructures.Trees
 {
+    using System;
+    using System.Collections.Generic;
+
     public class TrieMapNode<TRecord> : IComparable<TrieMapNode<TRecord>>
     {
         // Node key
@@ -111,7 +111,7 @@ namespace DataStructures.Trees
             if (other == null)
                 return -1;
 
-            return this.Key.CompareTo(other.Key);
+            return Key.CompareTo(other.Key);
 
         }
 

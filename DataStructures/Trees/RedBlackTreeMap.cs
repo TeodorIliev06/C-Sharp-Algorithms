@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-using DataStructures.Common;
-
-namespace DataStructures.Trees
+﻿namespace DataStructures.Trees
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Common;
+
     /// <summary>
     /// Red-Black Tree Data Structure.
     /// </summary>
@@ -24,7 +24,8 @@ namespace DataStructures.Trees
         /// CONSTRUCTOR.
         /// Allows duplicates by default.
         /// </summary>
-        public RedBlackTreeMap() : base() { }
+        public RedBlackTreeMap()
+        { }
 
         /// <summary>
         /// CONSTRUCTOR.
@@ -136,7 +137,7 @@ namespace DataStructures.Trees
             bool isLeftChild = currentNode.IsLeftChild;
 
             // Check if currentNode is the Root
-            bool isRootNode = (currentNode == this.Root);
+            bool isRootNode = (currentNode == Root);
 
             // Perform the rotation
             currentNode.RightChild = pivotNode.LeftChild;
@@ -151,7 +152,7 @@ namespace DataStructures.Trees
 
             //Update the entire tree's Root if necessary
             if (isRootNode)
-                this.Root = pivotNode;
+                Root = pivotNode;
 
             // Update the original parent's child node
             if (isLeftChild)
@@ -179,7 +180,7 @@ namespace DataStructures.Trees
             bool isLeftChild = currentNode.IsLeftChild;
 
             // Check if currentNode is the Root
-            bool isRootNode = (currentNode == this.Root);
+            bool isRootNode = (currentNode == Root);
 
             // Perform the rotation
             currentNode.LeftChild = pivotNode.RightChild;
@@ -194,7 +195,7 @@ namespace DataStructures.Trees
 
             // Update the entire tree's Root if necessary
             if (isRootNode)
-                this.Root = pivotNode;
+                Root = pivotNode;
 
             // Update the original parent's child node
             if (isLeftChild)
@@ -441,7 +442,7 @@ namespace DataStructures.Trees
         /// </summary>
         protected override bool _remove(BSTMapNode<TKey, TValue> nodeToDelete)
         {
-            return this._remove((RedBlackTreeMapNode<TKey, TValue>)nodeToDelete);
+            return _remove((RedBlackTreeMapNode<TKey, TValue>)nodeToDelete);
         }
 
         /// <summary>
@@ -514,7 +515,7 @@ namespace DataStructures.Trees
             }
 
             // Decrement the count
-            base._count--;
+            _count--;
 
             return true;
         }
@@ -557,7 +558,7 @@ namespace DataStructures.Trees
 
             if (collection.Length > 0)
                 for (int i = 0; i < collection.Length; ++i)
-                    this.Insert(collection[i], default(TValue));
+                    Insert(collection[i], default(TValue));
         }
 
         /// <summary>
@@ -570,7 +571,7 @@ namespace DataStructures.Trees
 
             if (collection.Length > 0)
                 for (int i = 0; i < collection.Length; ++i)
-                    this.Insert(collection[i].Key, collection[i].Value);
+                    Insert(collection[i].Key, collection[i].Value);
         }
 
         /// <summary>
@@ -583,7 +584,7 @@ namespace DataStructures.Trees
 
             if (collection.Count > 0)
                 for (int i = 0; i < collection.Count; ++i)
-                    this.Insert(collection[i], default(TValue));
+                    Insert(collection[i], default(TValue));
         }
 
         /// <summary>
@@ -596,7 +597,7 @@ namespace DataStructures.Trees
 
             if (collection.Count > 0)
                 for (int i = 0; i < collection.Count; ++i)
-                    this.Insert(collection[i].Key, collection[i].Value);
+                    Insert(collection[i].Key, collection[i].Value);
         }
 
         /// <summary>
@@ -611,7 +612,7 @@ namespace DataStructures.Trees
             var node = (RedBlackTreeMapNode<TKey, TValue>)base._findNode(Root, key);
 
             // Invoke the internal remove node method.
-            bool status = this._remove(node);
+            bool status = _remove(node);
 
             if (status == false)
                 throw new Exception("Item was not found.");
@@ -629,7 +630,7 @@ namespace DataStructures.Trees
             var node = (RedBlackTreeMapNode<TKey, TValue>)base._findMinNode(Root);
 
             // Invoke the internal remove node method.
-            this._remove(node);
+            _remove(node);
         }
 
         /// <summary>
@@ -644,7 +645,7 @@ namespace DataStructures.Trees
             var node = (RedBlackTreeMapNode<TKey, TValue>)base._findMaxNode(Root);
 
             // Invoke the internal remove node method.
-            this._remove(node);
+            _remove(node);
         }
 
     }

@@ -11,13 +11,14 @@
  * Implements both interfaces: IGraph<T> and IWeightedGraph<T>.
  */
 
-using System;
-using System.Collections.Generic;
-using DataStructures.Common;
-using DataStructures.Lists;
-
 namespace DataStructures.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+    using DataStructures.Common;
+
     public class DirectedWeightedSparseGraph<T> : IGraph<T>, IWeightedGraph<T> where T : IComparable<T>
     {
         /// <summary>
@@ -49,7 +50,7 @@ namespace DataStructures.Graphs
             WeightedEdge<T> edge = null;
 
             // Predicate
-            var sourceToDestinationPredicate = new Predicate<WeightedEdge<T>>((item) => item.Source.IsEqualTo<T>(source) && item.Destination.IsEqualTo<T>(destination));
+            var sourceToDestinationPredicate = new Predicate<WeightedEdge<T>>(item => item.Source.IsEqualTo(source) && item.Destination.IsEqualTo(destination));
 
             // Try to find a match
             if(_adjacencyList.ContainsKey(source))
@@ -125,17 +126,17 @@ namespace DataStructures.Graphs
 
         IEnumerable<IEdge<T>> IGraph<T>.Edges
         {
-            get { return this.Edges; }
+            get { return Edges; }
         }
 
         IEnumerable<IEdge<T>> IGraph<T>.IncomingEdges(T vertex)
         {
-            return this.IncomingEdges(vertex);
+            return IncomingEdges(vertex);
         }
 
         IEnumerable<IEdge<T>> IGraph<T>.OutgoingEdges(T vertex)
         {
-            return this.OutgoingEdges(vertex);
+            return OutgoingEdges(vertex);
         }
 
 
@@ -160,7 +161,7 @@ namespace DataStructures.Graphs
             if (!HasVertex(vertex))
                 throw new KeyNotFoundException("Vertex doesn't belong to graph.");
 
-            var predicate = new Predicate<WeightedEdge<T>>((edge) => edge.Destination.IsEqualTo(vertex));
+            var predicate = new Predicate<WeightedEdge<T>>(edge => edge.Destination.IsEqualTo(vertex));
 
             foreach(var adjacent in _adjacencyList.Keys)
             {
@@ -425,7 +426,7 @@ namespace DataStructures.Graphs
                     adjacents = String.Format("{0}{1}({2}), ", adjacents, adjacentNode.Destination, adjacentNode.Weight);
 
                 if (adjacents.Length > 0)
-                    adjacents = adjacents.TrimEnd(new char[] { ',', ' ' });
+                    adjacents = adjacents.TrimEnd(',', ' ');
 
                 output = String.Format("{0}{1}]", output, adjacents);
             }
@@ -455,7 +456,7 @@ namespace DataStructures.Graphs
                 throw new KeyNotFoundException("The source vertex doesn't exist.");
 
             var visited = new HashSet<T>();
-            var stack = new DataStructures.Lists.Stack<T>();
+            var stack = new Lists.Stack<T>();
             var listOfNodes = new ArrayList<T>(VerticesCount);
 
             stack.Push(source);
@@ -500,7 +501,7 @@ namespace DataStructures.Graphs
                 throw new KeyNotFoundException("The source vertex doesn't exist.");
 
             var visited = new HashSet<T>();
-            var queue = new DataStructures.Lists.Queue<T>();
+            var queue = new Lists.Queue<T>();
             var listOfNodes = new ArrayList<T>(VerticesCount);
 
             listOfNodes.Add(source);

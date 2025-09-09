@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-using DataStructures.Lists;
-
-namespace DataStructures.Graphs
+﻿namespace DataStructures.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+
     public interface IGraph<T> where T : IComparable<T>
     {
         /// <summary>

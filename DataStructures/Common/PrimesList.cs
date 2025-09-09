@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Text;
-
-namespace DataStructures.Common
+﻿namespace DataStructures.Common
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Reflection;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Provides a list of the first 10,000 primes.
     /// This class is a singleton, and read the primes from the file @"Data\PrimesList_10K.csv".
@@ -69,17 +69,17 @@ namespace DataStructures.Common
 			foreach (var line in lines)
             {
                 // Split the line by commas and convert the collection to a list.
-                var numbersAsStrings = line.Split(',').ToList<string>();
+                var numbersAsStrings = line.Split(',').ToList();
 
                 // defensive check against empty strings.
-                numbersAsStrings.RemoveAll(item => string.IsNullOrEmpty(item) == true);
+                numbersAsStrings.RemoveAll(item => string.IsNullOrEmpty(item));
 
                 if (numbersAsStrings.Count > 0)
                 {
                     try
                     {
                         // cast them into integers and add them to the primes list
-                        var numbers = numbersAsStrings.Select(item => Convert.ToInt32(item)).ToList<int>();
+                        var numbers = numbersAsStrings.Select(item => Convert.ToInt32(item)).ToList();
                         _primes.AddRange(numbers);
                     }
                     catch (Exception e)

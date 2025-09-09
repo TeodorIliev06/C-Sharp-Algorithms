@@ -1,7 +1,9 @@
-﻿
-namespace DataStructures.Heaps
+﻿namespace DataStructures.Heaps
 {
-    public interface IMinHeap<T> where T : System.IComparable<T>
+    using System;
+    using System.Collections.Generic;
+
+    public interface IMinHeap<T> where T : IComparable<T>
     {
         /// <summary>
         /// Returns the number of elements in heap
@@ -17,7 +19,7 @@ namespace DataStructures.Heaps
         /// Heapifies the specified newCollection. Overrides the current heap.
         /// </summary>
         /// <param name="newCollection">New collection.</param>
-        void Initialize(System.Collections.Generic.IList<T> newCollection);
+        void Initialize(IList<T> newCollection);
 
         /// <summary>
         /// Adding a new key to the heap.
@@ -62,7 +64,7 @@ namespace DataStructures.Heaps
         /// Returns a list version of this heap.
         /// </summary>
         /// <returns>The list.</returns>
-        System.Collections.Generic.List<T> ToList();
+        List<T> ToList();
 
         /// <summary>
         /// Returns a new min heap that contains all elements of this heap.

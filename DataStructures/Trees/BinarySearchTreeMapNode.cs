@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace DataStructures.Trees
+﻿namespace DataStructures.Trees
 {
+    using System;
+
     /// <summary>
     /// The Binary Search Tree Map node.
     /// </summary>
@@ -27,32 +27,32 @@ namespace DataStructures.Trees
 
         public virtual TKey Key
         {
-            get { return this._key; }
-            set { this._key = value; }
+            get { return _key; }
+            set { _key = value; }
         }
 
         public virtual TValue Value
         {
-            get { return this._value; }
-            set { this._value = value; }
+            get { return _value; }
+            set { _value = value; }
         }
 
         public virtual BSTMapNode<TKey, TValue> Parent
         {
-            get { return this._parent; }
-            set { this._parent = value; }
+            get { return _parent; }
+            set { _parent = value; }
         }
 
         public virtual BSTMapNode<TKey, TValue> LeftChild
         {
-            get { return this._left; }
-            set { this._left = value; }
+            get { return _left; }
+            set { _left = value; }
         }
 
         public virtual BSTMapNode<TKey, TValue> RightChild
         {
-            get { return this._right; }
-            set { this._right = value; }
+            get { return _right; }
+            set { _right = value; }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace DataStructures.Trees
         /// </summary>
         public virtual bool HasChildren
         {
-            get { return (this.ChildrenCount > 0); }
+            get { return (ChildrenCount > 0); }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace DataStructures.Trees
         /// </summary>
         public virtual bool HasLeftChild
         {
-            get { return (this.LeftChild != null); }
+            get { return (LeftChild != null); }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace DataStructures.Trees
         /// </summary>
         public virtual bool HasRightChild
         {
-            get { return (this.RightChild != null); }
+            get { return (RightChild != null); }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace DataStructures.Trees
         /// </summary>
         public virtual bool IsLeftChild
         {
-            get { return (this.Parent != null && this.Parent.LeftChild == this); }
+            get { return (Parent != null && Parent.LeftChild == this); }
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace DataStructures.Trees
         /// </summary>
         public virtual bool IsRightChild
         {
-            get { return (this.Parent != null && this.Parent.RightChild == this); }
+            get { return (Parent != null && Parent.RightChild == this); }
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace DataStructures.Trees
         /// </summary>
         public virtual bool IsLeafNode
         {
-            get { return (this.ChildrenCount == 0); }
+            get { return (ChildrenCount == 0); }
         }
 
         /// <summary>
@@ -113,10 +113,10 @@ namespace DataStructures.Trees
             {
                 int count = 0;
 
-                if (this.HasLeftChild)
+                if (HasLeftChild)
                     count++;
                 
-                if (this.HasRightChild)
+                if (HasRightChild)
                     count++;
 
                 return count;
@@ -131,7 +131,7 @@ namespace DataStructures.Trees
             if (other == null)
                 return -1;
 
-            return this.Key.CompareTo(other.Key);
+            return Key.CompareTo(other.Key);
         }
     }//end-of-bstnode
 }

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace DataStructures.Trees
+﻿namespace DataStructures.Trees
 {
-    public interface IBinarySearchTree<T> where T : System.IComparable<T>
+    using System;
+    using System.Collections.Generic;
+
+    public interface IBinarySearchTree<T> where T : IComparable<T>
     {
         // Returns a copy of the tree root
         BSTNode<T> Root { get; }
@@ -50,7 +51,7 @@ namespace DataStructures.Trees
         T Find(T item);
 
         // Finds all the elements in the tree that match the predicate.
-        IEnumerable<T> FindAll(System.Predicate<T> searchPredicate);
+        IEnumerable<T> FindAll(Predicate<T> searchPredicate);
 
         // Return an array of the tree elements
         T[] ToArray();
@@ -76,7 +77,7 @@ namespace DataStructures.Trees
     /// </summary>
     /// <typeparam name="TKey">Type of items.</typeparam>
     /// <typeparam name="TValue">Type of records per node.</typeparam>
-    public interface IBinarySearchTree<TKey, TValue> where TKey : System.IComparable<TKey>
+    public interface IBinarySearchTree<TKey, TValue> where TKey : IComparable<TKey>
     {
         BSTMapNode<TKey, TValue> Root { get; }
         int Count { get; }
@@ -94,7 +95,7 @@ namespace DataStructures.Trees
         KeyValuePair<TKey, TValue> FindMin();
         KeyValuePair<TKey, TValue> FindMax();
         KeyValuePair<TKey, TValue> Find(TKey item);
-        IEnumerable<KeyValuePair<TKey, TValue>> FindAll(System.Predicate<TKey> searchPredicate);
+        IEnumerable<KeyValuePair<TKey, TValue>> FindAll(Predicate<TKey> searchPredicate);
         KeyValuePair<TKey, TValue>[] ToArray();
         List<KeyValuePair<TKey, TValue>> ToList();
         void Clear();

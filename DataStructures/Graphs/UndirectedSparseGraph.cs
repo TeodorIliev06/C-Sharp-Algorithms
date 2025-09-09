@@ -7,13 +7,13 @@
  * This class implements the IGraph<T> interface.
  */
 
-using System;
-using System.Collections.Generic;
-
-using DataStructures.Lists;
-
 namespace DataStructures.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+
     public class UndirectedSparseGraph<T> : IGraph<T> where T : IComparable<T>
     {
         /// <summary>
@@ -95,17 +95,17 @@ namespace DataStructures.Graphs
 
         IEnumerable<IEdge<T>> IGraph<T>.Edges
         {
-            get { return this.Edges; }
+            get { return Edges; }
         }
 
         IEnumerable<IEdge<T>> IGraph<T>.IncomingEdges(T vertex)
         {
-            return this.IncomingEdges(vertex);
+            return IncomingEdges(vertex);
         }
 
         IEnumerable<IEdge<T>> IGraph<T>.OutgoingEdges(T vertex)
         {
-            return this.OutgoingEdges(vertex);
+            return OutgoingEdges(vertex);
         }
 
 
@@ -207,7 +207,7 @@ namespace DataStructures.Graphs
                 throw new ArgumentNullException();
 
             foreach (var item in collection)
-                this.AddVertex(item);
+                AddVertex(item);
         }
 
         /// <summary>
@@ -311,7 +311,7 @@ namespace DataStructures.Graphs
                     adjacents = String.Format("{0}{1},", adjacents, adjacentNode);
 
                 if (adjacents.Length > 0)
-                    adjacents = adjacents.TrimEnd(new char[] { ',', ' ' });
+                    adjacents = adjacents.TrimEnd(',', ' ');
 
                 output = String.Format("{0}{1}]", output, adjacents);
             }

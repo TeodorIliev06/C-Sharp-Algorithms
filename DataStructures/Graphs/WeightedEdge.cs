@@ -1,9 +1,9 @@
-﻿using System;
-
-using DataStructures.Common;
-
-namespace DataStructures.Graphs
+﻿namespace DataStructures.Graphs
 {
+    using System;
+
+    using DataStructures.Common;
+
     /// <summary>
     /// The graph weighted edge class.
     /// </summary>
@@ -52,7 +52,7 @@ namespace DataStructures.Graphs
             if (other == null)
                 return -1;
             
-            bool areNodesEqual = Source.IsEqualTo<TVertex>(other.Source) && Destination.IsEqualTo<TVertex>(other.Destination);
+            bool areNodesEqual = Source.IsEqualTo(other.Source) && Destination.IsEqualTo(other.Destination);
 
             if (!areNodesEqual)
                 return -1;

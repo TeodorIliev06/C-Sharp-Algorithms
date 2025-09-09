@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-using DataStructures.Trees;
-
-namespace DataStructures.SortedCollections
+﻿namespace DataStructures.SortedCollections
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using DataStructures.Trees;
+
     /// <summary>
     /// Sorted Dictionary collection (Red-Black Tree based).
     /// </summary>
@@ -132,7 +133,7 @@ namespace DataStructures.SortedCollections
         {
             get
             {
-                var keys = new System.Collections.Generic.List<TKey>(Count);
+                var keys = new List<TKey>(Count);
                 var enumerator = _collection.GetInOrderEnumerator();
 
                 while (enumerator.MoveNext())
@@ -149,7 +150,7 @@ namespace DataStructures.SortedCollections
         {
             get
             {
-                var values = new System.Collections.Generic.List<TValue>(Count);
+                var values = new List<TValue>(Count);
                 var enumerator = _collection.GetInOrderEnumerator();
 
                 while (enumerator.MoveNext())
@@ -255,7 +256,7 @@ namespace DataStructures.SortedCollections
             return _collection.GetInOrderEnumerator();
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }

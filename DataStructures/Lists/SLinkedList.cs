@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-using DataStructures.Common;
-
-namespace DataStructures.Lists
+﻿namespace DataStructures.Lists
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using DataStructures.Common;
+
     /// <summary>
     /// The Singly-Linked List Node class
     /// </summary>
@@ -28,21 +29,21 @@ namespace DataStructures.Lists
 
         public T Data
         {
-            get { return this._data; }
-            set { this._data = value; }
+            get { return _data; }
+            set { _data = value; }
         }
 
         public SLinkedListNode<T> Next
         {
-            get { return this._next; }
-            set { this._next = value; }
+            get { return _next; }
+            set { _next = value; }
         }
 
         public int CompareTo(SLinkedListNode<T> other)
         {
             if (other == null) return -1;
 
-            return this.Data.CompareTo(other.Data);
+            return Data.CompareTo(other.Data);
         }
     }
 
@@ -66,7 +67,7 @@ namespace DataStructures.Lists
 
         public virtual SLinkedListNode<T> Head
         {
-            get { return this._firstNode; }
+            get { return _firstNode; }
         }
 
         /// <summary>
@@ -312,7 +313,7 @@ namespace DataStructures.Lists
         public SLinkedList<T> GetRange(int index, int countOfElements)
         {
             SLinkedList<T> newList = new SLinkedList<T>();
-            var currentNode = this._firstNode;
+            var currentNode = _firstNode;
 
             // Handle Index out of Bound errors
             if (Count == 0)
@@ -449,7 +450,7 @@ namespace DataStructures.Lists
             return new SLinkedListEnumerator(this);
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return new SLinkedListEnumerator(this);
         }
@@ -463,16 +464,16 @@ namespace DataStructures.Lists
 
             public SLinkedListEnumerator(SLinkedList<T> list)
             {
-                this._doublyLinkedList = list;
-                this._current = list.Head;
+                _doublyLinkedList = list;
+                _current = list.Head;
             }
 
             public T Current
             {
-                get { return this._current.Data; }
+                get { return _current.Data; }
             }
 
-            object System.Collections.IEnumerator.Current
+            object IEnumerator.Current
             {
                 get { return Current; }
             }
@@ -481,7 +482,7 @@ namespace DataStructures.Lists
             {
                 _current = _current.Next;
 
-                return (this._current != null);
+                return (_current != null);
             }
 
             public void Reset()

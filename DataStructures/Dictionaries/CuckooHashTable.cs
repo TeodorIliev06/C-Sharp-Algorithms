@@ -5,15 +5,15 @@
  * This is a single-table implementation, the source behind this idea is the work of Mark Allen Weiss, 2014.
  */
 
-using System;
-using System.Collections.Generic;
-
-using DataStructures.Common;
-using DataStructures.Hashing;
-using System.Threading.Tasks;
-
 namespace DataStructures.Dictionaries
 {
+    using System;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
+    using DataStructures.Common;
+    using DataStructures.Hashing;
+
     /// <summary>
     /// THE CUCKOO HASH TABLE Data Structure.
     /// </summary>
@@ -117,18 +117,18 @@ namespace DataStructures.Dictionaries
             int primeCapacity = PRIMES.GetNextPrime(newCapacity);
 
             var oldSize = _size;
-            var oldCollection = this._collection;
+            var oldCollection = _collection;
 
             try
             {
-                this._collection = new CHashEntry<TKey, TValue>[newCapacity];
+                _collection = new CHashEntry<TKey, TValue>[newCapacity];
 
                 // Reset size
                 _size = 0;
 
                 for (int i = 0; i < oldCollection.Length; ++i)
                 {
-                    if (oldCollection[i] != null && oldCollection[i].IsActive == true)
+                    if (oldCollection[i] != null && oldCollection[i].IsActive)
                     {
                         _insertHelper(oldCollection[i].Key, oldCollection[i].Value);
                     }
@@ -166,7 +166,7 @@ namespace DataStructures.Dictionaries
             if (index < 0 || index > _collection.Length)
                 throw new IndexOutOfRangeException();
 
-            return (_collection[index] != null && _collection[index].IsActive == true);
+            return (_collection[index] != null && _collection[index].IsActive);
         }
 
         /// <summary>
@@ -280,7 +280,7 @@ namespace DataStructures.Dictionaries
             }
             set
             {
-                if (ContainsKey(key) == true)
+                if (ContainsKey(key))
                     Update(key, value);
 
                 throw new KeyNotFoundException();
@@ -348,12 +348,12 @@ namespace DataStructures.Dictionaries
         /// </summary>
         public void Clear()
         {
-            this._size = 0;
+            _size = 0;
 
             Parallel.ForEach(_collection,
-                (item) =>
+                item =>
                 {
-                    if (item != null && item.IsActive == true)
+                    if (item != null && item.IsActive)
                     {
                         item.IsActive = false;
                     }

@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace DataStructures.Graphs
+﻿namespace DataStructures.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// This interface should be implemented alongside the IGraph interface.
     /// </summary>
@@ -30,7 +31,7 @@ namespace DataStructures.Graphs
         /// <summary>
         /// Returns the neighbours of a vertex as a dictionary of nodes-to-weights.
         /// </summary>
-        System.Collections.Generic.Dictionary<T, long> NeighboursMap(T vertex);
+        Dictionary<T, long> NeighboursMap(T vertex);
     }
 }
 

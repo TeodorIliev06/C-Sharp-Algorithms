@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-using DataStructures.Common;
-using DataStructures.Lists;
-
-namespace DataStructures.Heaps
+﻿namespace DataStructures.Heaps
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+    using DataStructures.Common;
+
     /// <summary>
     /// Minimum Heap Data Structure.
     /// </summary>
@@ -113,7 +113,7 @@ namespace DataStructures.Heaps
         {
             get
             {
-                if (index < 0 || index > this.Count || this.Count == 0)
+                if (index < 0 || index > Count || Count == 0)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -122,7 +122,7 @@ namespace DataStructures.Heaps
             }
             set
             {
-                if (index < 0 || index >= this.Count)
+                if (index < 0 || index >= Count)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -284,8 +284,8 @@ namespace DataStructures.Heaps
         /// </summary>
         public IMaxHeap<T> ToMaxHeap()
         {
-            BinaryMaxHeap<T> newMaxHeap = new BinaryMaxHeap<T>(this.Count, this._heapComparer);
-            newMaxHeap.Initialize(this._collection.ToArray());
+            BinaryMaxHeap<T> newMaxHeap = new BinaryMaxHeap<T>(Count, _heapComparer);
+            newMaxHeap.Initialize(_collection.ToArray());
             return newMaxHeap;
         }
 

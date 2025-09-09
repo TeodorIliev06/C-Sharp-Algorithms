@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DataStructures.Lists
+﻿namespace DataStructures.Lists
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
     /// <summary>
     /// The Queue (FIFO) Data Structure.
     /// </summary>
@@ -22,7 +23,7 @@ namespace DataStructures.Lists
         // This sets the default maximum array length to refer to MAXIMUM_ARRAY_LENGTH_x64
         // Set the flag IsMaximumCapacityReached to false
         bool DefaultMaxCapacityIsX64 = true;
-        bool IsMaximumCapacityReached = false;
+        bool IsMaximumCapacityReached;
 
         // The C# Maximum Array Length (before encountering overflow)
         // Reference: http://referencesource.microsoft.com/#mscorlib/system/array.cs,2d2b551eabe74985
@@ -60,7 +61,7 @@ namespace DataStructures.Lists
 
                 // Allow the list to grow to maximum possible capacity (~2G elements) before encountering overflow.
                 // Note that this check works even when _items.Length overflowed thanks to the (uint) cast
-                int maxCapacity = (DefaultMaxCapacityIsX64 == true ? MAXIMUM_ARRAY_LENGTH_x64 : MAXIMUM_ARRAY_LENGTH_x86);
+                int maxCapacity = (DefaultMaxCapacityIsX64 ? MAXIMUM_ARRAY_LENGTH_x64 : MAXIMUM_ARRAY_LENGTH_x86);
 
                 // Handle the new proper size
                 if (capacity < newSize)
@@ -83,7 +84,7 @@ namespace DataStructures.Lists
                 }
                 catch (OutOfMemoryException)
                 {
-                    if (DefaultMaxCapacityIsX64 == true)
+                    if (DefaultMaxCapacityIsX64)
                     {
                         DefaultMaxCapacityIsX64 = false;
                         _resize(capacity);
@@ -238,9 +239,9 @@ namespace DataStructures.Lists
             return _collection.GetEnumerator() as IEnumerator<T>;
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
     }

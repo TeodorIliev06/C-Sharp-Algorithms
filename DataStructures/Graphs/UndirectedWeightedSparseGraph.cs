@@ -5,18 +5,19 @@
  * A sparse graph is a graph G = (V, E) in which |E| = O(|V|).
  * A weighted graph is a graph where each edge has a weight (zero weights mean there is no edge).
  * 
- * An adjacency-list weighted graph representation. Shares a good deal of implemention details 
+ * An adjacency-list weighted graph representation. Shares a good deal of implementation details 
  * with the Undirected Sparse version (UndirectedSparseGraph<T>). Edges are instances of WeightedEdge<T> class. 
  * Implements both interfaces: IGraph<T> and IWeightedGraph<T>.
  */
 
-using System;
-using System.Collections.Generic;
-using DataStructures.Common;
-using DataStructures.Lists;
-
 namespace DataStructures.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+    using DataStructures.Common;
+
     public class UndirectedWeightedSparseGraph<T> : IGraph<T>, IWeightedGraph<T> where T : IComparable<T>
     {
         /// <summary>
@@ -48,8 +49,8 @@ namespace DataStructures.Graphs
             var success = false;
             WeightedEdge<T> edge = null;
 
-            var sourceToDestinationPredicate = new Predicate<WeightedEdge<T>>((item) => item.Source.IsEqualTo<T>(source) && item.Destination.IsEqualTo<T>(destination));
-            var destinationToSourcePredicate = new Predicate<WeightedEdge<T>>((item) => item.Source.IsEqualTo<T>(destination) && item.Destination.IsEqualTo<T>(source));
+            var sourceToDestinationPredicate = new Predicate<WeightedEdge<T>>(item => item.Source.IsEqualTo(source) && item.Destination.IsEqualTo(destination));
+            var destinationToSourcePredicate = new Predicate<WeightedEdge<T>>(item => item.Source.IsEqualTo(destination) && item.Destination.IsEqualTo(source));
 
             if(_adjacencyList.ContainsKey(source))
                 success = _adjacencyList[source].TryFindFirst(sourceToDestinationPredicate, out edge);
@@ -126,17 +127,17 @@ namespace DataStructures.Graphs
 
         IEnumerable<IEdge<T>> IGraph<T>.Edges
         {
-            get { return this.Edges; }
+            get { return Edges; }
         }
 
         IEnumerable<IEdge<T>> IGraph<T>.IncomingEdges(T vertex)
         {
-            return this.IncomingEdges(vertex);
+            return IncomingEdges(vertex);
         }
 
         IEnumerable<IEdge<T>> IGraph<T>.OutgoingEdges(T vertex)
         {
-            return this.OutgoingEdges(vertex);
+            return OutgoingEdges(vertex);
         }
 
 
@@ -237,10 +238,10 @@ namespace DataStructures.Graphs
 
             WeightedEdge<T> edge1, edge2;
 
-            var sourceToDestinationPredicate = new Predicate<WeightedEdge<T>>((item) => item.Source.IsEqualTo<T>(source) && item.Destination.IsEqualTo<T>(destination));
+            var sourceToDestinationPredicate = new Predicate<WeightedEdge<T>>(item => item.Source.IsEqualTo(source) && item.Destination.IsEqualTo(destination));
             _adjacencyList[source].TryFindFirst(sourceToDestinationPredicate, out edge1);
 
-            var destinationToSourcePredicate = new Predicate<WeightedEdge<T>>((item) => item.Source.IsEqualTo<T>(destination) && item.Destination.IsEqualTo<T>(source));
+            var destinationToSourcePredicate = new Predicate<WeightedEdge<T>>(item => item.Source.IsEqualTo(destination) && item.Destination.IsEqualTo(source));
             _adjacencyList[destination].TryFindFirst(destinationToSourcePredicate, out edge2);
 
             // If edge doesn't exist, return false
@@ -456,7 +457,7 @@ namespace DataStructures.Graphs
                     adjacents = String.Format("{0}{1}({2}), ", adjacents, adjacentNode.Destination, adjacentNode.Weight);
 
                 if (adjacents.Length > 0)
-                    adjacents = adjacents.TrimEnd(new char[] { ',', ' ' });
+                    adjacents = adjacents.TrimEnd(',', ' ');
 
                 output = String.Format("{0}{1}]", output, adjacents);
             }
@@ -486,7 +487,7 @@ namespace DataStructures.Graphs
                 throw new KeyNotFoundException("The source vertex doesn't exist.");
 
             var visited = new HashSet<T>();
-            var stack = new DataStructures.Lists.Stack<T>();
+            var stack = new Lists.Stack<T>();
             var listOfNodes = new ArrayList<T>(VerticesCount);
 
             stack.Push(source);
@@ -531,7 +532,7 @@ namespace DataStructures.Graphs
                 throw new KeyNotFoundException("The source vertex doesn't exist.");
 
             var visited = new HashSet<T>();
-            var queue = new DataStructures.Lists.Queue<T>();
+            var queue = new Lists.Queue<T>();
             var listOfNodes = new ArrayList<T>(VerticesCount);
 
             listOfNodes.Add(source);

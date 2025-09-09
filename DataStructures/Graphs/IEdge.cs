@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace DataStructures.Graphs
+﻿namespace DataStructures.Graphs
 {
+    using System;
+
     /// <summary>
     /// This interface should be implemented by all edges classes.
     /// </summary>

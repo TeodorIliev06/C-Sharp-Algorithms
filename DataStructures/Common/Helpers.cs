@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using DataStructures.Lists;
-
-namespace DataStructures.Common
+﻿namespace DataStructures.Common
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+
     public static class Helpers
     {
         /// <summary>

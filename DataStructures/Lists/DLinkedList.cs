@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-using DataStructures.Common;
-
-namespace DataStructures.Lists
+﻿namespace DataStructures.Lists
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using DataStructures.Common;
+
     /// <summary>
     /// The Doubly-Linked List Node class.
     /// </summary>
@@ -26,27 +27,27 @@ namespace DataStructures.Lists
 
         public virtual T Data
         {
-            get { return this._data; }
-            set { this._data = value; }
+            get { return _data; }
+            set { _data = value; }
         }
 
         public virtual DLinkedListNode<T> Next
         {
-            get { return this._next; }
-            set { this._next = value; }
+            get { return _next; }
+            set { _next = value; }
         }
 
         public virtual DLinkedListNode<T> Previous
         {
-            get { return this._previous; }
-            set { this._previous = value; }
+            get { return _previous; }
+            set { _previous = value; }
         }
 
         public int CompareTo(DLinkedListNode<T> other)
         {
             if (other == null) return -1;
 
-            return this.Data.CompareTo(other.Data);
+            return Data.CompareTo(other.Data);
         }
     }
 
@@ -69,12 +70,12 @@ namespace DataStructures.Lists
 
         public virtual DLinkedListNode<T> Head
         {
-            get { return this._firstNode; }
+            get { return _firstNode; }
         }
 
         public virtual int Count
         {
-            get { return this._count; }
+            get { return _count; }
         }
 
 
@@ -105,7 +106,7 @@ namespace DataStructures.Lists
             // Otherwise, traverse it from the beginning (_firstNode refrence)
             if (index > (Count / 2))
             {
-                currentNode = this._lastNode;
+                currentNode = _lastNode;
                 for (int i = (Count - 1); i > index; --i)
                 {
                     currentNode = currentNode.Previous;
@@ -113,7 +114,7 @@ namespace DataStructures.Lists
             }
             else
             {
-                currentNode = this._firstNode;
+                currentNode = _firstNode;
                 for (int i = 0; i < index; ++i)
                 {
                     currentNode = currentNode.Next;
@@ -150,7 +151,7 @@ namespace DataStructures.Lists
                 // Otherwise, traverse it from the beginning (_firstNode refrence)
                 if (index > (Count / 2))
                 {
-                    currentNode = this._lastNode;
+                    currentNode = _lastNode;
                     for (int i = (Count - 1); i > index; --i)
                     {
                         currentNode = currentNode.Previous;
@@ -158,7 +159,7 @@ namespace DataStructures.Lists
                 }
                 else
                 {
-                    currentNode = this._firstNode;
+                    currentNode = _firstNode;
                     for (int i = 0; i < index; ++i)
                     {
                         currentNode = currentNode.Next;
@@ -239,8 +240,8 @@ namespace DataStructures.Lists
         /// <param name="index">Index of element.</param>
         public virtual T this[int index]
         {
-            get { return this._getElementAt(index); }
-            set { this._setElementAt(index, value); }
+            get { return _getElementAt(index); }
+            set { _setElementAt(index, value); }
         }
 
         /// <summary>
@@ -265,7 +266,7 @@ namespace DataStructures.Lists
                 i++;
             }//end-while
 
-            return (found == true ? i : -1);
+            return (found ? i : -1);
         }
 
         /// <summary>
@@ -339,7 +340,7 @@ namespace DataStructures.Lists
                 DLinkedListNode<T> currentNode = null;
                 DLinkedListNode<T> newNode = new DLinkedListNode<T>(dataItem);
 
-                currentNode = this._firstNode;
+                currentNode = _firstNode;
                 for (int i = 0; i < index - 1; ++i)
                 {
                     currentNode = currentNode.Next;
@@ -695,7 +696,7 @@ namespace DataStructures.Lists
             // Otherwise, traverse it from the beginning (_firstNode refrence)
             if (index > (Count / 2))
             {
-                currentNode = this._lastNode;
+                currentNode = _lastNode;
                 for (int i = (Count - 1); i > index; --i)
                 {
                     currentNode = currentNode.Previous;
@@ -703,7 +704,7 @@ namespace DataStructures.Lists
             }
             else
             {
-                currentNode = this._firstNode;
+                currentNode = _firstNode;
                 for (int i = 0; i < index; ++i)
                 {
                     currentNode = currentNode.Next;
@@ -837,9 +838,9 @@ namespace DataStructures.Lists
             // return new DLinkedListEnumerator(this);
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
 
             // Alternative: IEnumerator class instance
             // return new DLinkedListEnumerator(this);
@@ -854,16 +855,16 @@ namespace DataStructures.Lists
 
             public DLinkedListEnumerator(DLinkedList<T> list)
             {
-                this._current = list.Head;
-                this._doublyLinkedList = list;
+                _current = list.Head;
+                _doublyLinkedList = list;
             }
 
             public T Current
             {
-                get { return this._current.Data; }
+                get { return _current.Data; }
             }
 
-            object System.Collections.IEnumerator.Current
+            object IEnumerator.Current
             {
                 get { return Current; }
             }

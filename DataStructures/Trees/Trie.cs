@@ -6,12 +6,13 @@
  * This class implements the IEnumerable interface.
  */
 
-using System;
-using System.Linq;
-using System.Collections.Generic;
-
 namespace DataStructures.Trees
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+
     /// <summary>
     /// The vanila Trie implementation.
     /// </summary>
@@ -186,7 +187,7 @@ namespace DataStructures.Trees
         /// IEnumerable\<String\>.IEnumerator implementation.
         /// </summary>
         /// <returns></returns>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }

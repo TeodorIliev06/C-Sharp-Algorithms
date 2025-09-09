@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DataStructures.Dictionaries
+﻿namespace DataStructures.Dictionaries
 {
+    using System;
+    using System.Text;
+    using System.Collections;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Open Addressing Data Structure
     /// </summary>
@@ -120,7 +121,7 @@ namespace DataStructures.Dictionaries
             if (typeof(TKey) == typeof(string))
             {
                 //https://stackoverflow.com/questions/4092393/value-of-type-t-cannot-be-converted-to
-                TKey newTkeyString = (TKey)(object)key;
+                TKey newTkeyString = key;
                 string newTkeyString2 = (string)(object)newTkeyString;
 
                 //https://stackoverflow.com/questions/400733/how-to-get-ascii-value-of-string-in-c-sharp
@@ -129,7 +130,7 @@ namespace DataStructures.Dictionaries
                 int string_value = 0;
                 foreach (byte bite in asciiBytes)
                 {
-                    string_value += (int)bite;
+                    string_value += bite;
                 }
 
                 //calculates first hash values
@@ -141,10 +142,10 @@ namespace DataStructures.Dictionaries
             else if (typeof(TKey) == typeof(char))
             {
                 //https://stackoverflow.com/questions/4092393/value-of-type-t-cannot-be-converted-to
-                TKey newTkeyChar = (TKey)(object)key;
+                TKey newTkeyChar = key;
                 char newTkeyChar2 = (char)(object)newTkeyChar;
 
-                int char_value = (int)newTkeyChar2;
+                int char_value = newTkeyChar2;
 
                 //calculates first hash values
                 hash_value = Convert.ToInt32(char_value) % _size;
@@ -226,7 +227,7 @@ namespace DataStructures.Dictionaries
             }
             set {
 
-                if (ContainsKey(key) == true)
+                if (ContainsKey(key))
                 {
 
                     int index = search(key);
@@ -313,7 +314,7 @@ namespace DataStructures.Dictionaries
             {
                 //calculate index
                 int index = _double_hash(key, i);
-                if (IComparable.Equals(_table[index].key, key))
+                if (Equals(_table[index].key, key))
                 {
                     return index;
                 }
@@ -383,7 +384,7 @@ namespace DataStructures.Dictionaries
             throw new NotImplementedException();
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
         }

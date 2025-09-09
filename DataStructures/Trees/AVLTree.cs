@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DataStructures.Trees
+﻿namespace DataStructures.Trees
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// AVL Tree Data Structure.
     /// </summary>
@@ -21,7 +21,8 @@ namespace DataStructures.Trees
         /// CONSTRUCTOR.
         /// Allows duplicates by default.
         /// </summary>
-        public AVLTree() : base() { }
+        public AVLTree()
+        { }
 
         /// <summary>
         /// CONSTRUCTOR.
@@ -96,7 +97,7 @@ namespace DataStructures.Trees
             bool isLeftChild = currentNode.IsLeftChild;
 
             // Check if currentNode is the Root
-            bool isRootNode = (currentNode == this.Root);
+            bool isRootNode = (currentNode == Root);
 
             // Perform the rotation
             currentNode.RightChild = pivotNode.LeftChild;
@@ -111,7 +112,7 @@ namespace DataStructures.Trees
 
             //Update the entire tree's Root if necessary
             if (isRootNode)
-                this.Root = pivotNode;
+                Root = pivotNode;
 
             // Update the original parent's child node
             if (isLeftChild)
@@ -143,7 +144,7 @@ namespace DataStructures.Trees
             bool isLeftChild = currentNode.IsLeftChild;
 
             // Check if currentNode is the Root
-            bool isRootNode = (currentNode == this.Root);
+            bool isRootNode = (currentNode == Root);
 
             // Perform the rotation
             currentNode.LeftChild = pivotNode.RightChild;
@@ -158,7 +159,7 @@ namespace DataStructures.Trees
 
             // Update the entire tree's Root if necessary
             if (isRootNode)
-                this.Root = pivotNode;
+                Root = pivotNode;
 
             // Update the original parent's child node
             if (isLeftChild)
@@ -277,7 +278,7 @@ namespace DataStructures.Trees
         public override void Insert(T item)
         {
             // New node object
-            var newNode = new AVLTreeNode<T>() { Value = item };
+            var newNode = new AVLTreeNode<T> { Value = item };
 
             // Invoke the super BST insert node method.
             // This insert node recursively starting from the root and checks for success status (related to allowDuplicates flag).
@@ -301,7 +302,7 @@ namespace DataStructures.Trees
 
             if (collection.Length > 0)
                 for (int i = 0; i < collection.Length; ++i)
-                    this.Insert(collection[i]);
+                    Insert(collection[i]);
         }
 
         /// <summary>
@@ -314,7 +315,7 @@ namespace DataStructures.Trees
 
             if (collection.Count > 0)
                 for (int i = 0; i < collection.Count; ++i)
-                    this.Insert(collection[i]);
+                    Insert(collection[i]);
         }
 
         /// <summary>
@@ -331,7 +332,7 @@ namespace DataStructures.Trees
             // Invoke the BST remove node method.
             bool status = base._remove(node);
 
-            if (status == true)
+            if (status)
             {
                 // Rebalance the tree
                 // node.parent is actually the old parent of the node,

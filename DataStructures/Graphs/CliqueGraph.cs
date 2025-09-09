@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using DataStructures.Lists;
-
-namespace DataStructures.Graphs
+﻿namespace DataStructures.Graphs
 {
+    using System;
+    using System.Diagnostics;
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+
     /// <summary>
     /// Represents an unweighted undirected graph, modeling with a set of its maximal complete subgraphs of it.
     /// Should be fast in clustered graphs
@@ -13,7 +15,6 @@ namespace DataStructures.Graphs
         public class Clique : HashSet<T>, IComparable<Clique>
         {
             public Clique()
-                : base()
             {
             }
 
@@ -36,7 +37,7 @@ namespace DataStructures.Graphs
                 string ret = "{";
                 foreach (var x in this)
                 {
-                    ret += x.ToString() + " ";
+                    ret += x + " ";
                 }
                 ret += "}";
                 return ret;
@@ -98,7 +99,7 @@ namespace DataStructures.Graphs
         {
             if (vertices == null)
             {
-                System.Diagnostics.Debug.WriteLine("Cannot initialize an instance of a CliqueGraph with NULL vertices;\ninvoking default constructor.");
+                Debug.WriteLine("Cannot initialize an instance of a CliqueGraph with NULL vertices;\ninvoking default constructor.");
             }
             else
             {
@@ -235,7 +236,7 @@ namespace DataStructures.Graphs
         ISet<UnordererPair<T>> getPairs(ICollection<T> vertices)
         {
             T[] arr = new T[vertices.Count];
-            ISet<UnordererPair<T>> ret = new System.Collections.Generic.HashSet<UnordererPair<T>>(new PairComparer());
+            ISet<UnordererPair<T>> ret = new HashSet<UnordererPair<T>>(new PairComparer());
             vertices.CopyTo(arr, 0);
             for (int i = 0; i < vertices.Count; i++)
             {
@@ -476,9 +477,9 @@ namespace DataStructures.Graphs
         /// Returns the neighbours doubly-linked list for the specified vertex.
         /// </summary>
         /// <param name="vertex">Vertex.</param>
-        public DataStructures.Lists.DLinkedList<T> Neighbours(T vertex)
+        public DLinkedList<T> Neighbours(T vertex)
         {
-            DataStructures.Lists.DLinkedList<T> returnList = new DataStructures.Lists.DLinkedList<T>();
+            DLinkedList<T> returnList = new DLinkedList<T>();
 
             foreach (var c in _cliques)
             {
@@ -709,7 +710,7 @@ namespace DataStructures.Graphs
         {
             get
             {
-                return Pick<Clique>(getMaximumCliques).Count;
+                return Pick(getMaximumCliques).Count;
             }
         }
 
@@ -804,7 +805,7 @@ namespace DataStructures.Graphs
                 intersection = new HashSet<T>(listPath[i]);
                 intersection.IntersectWith(listPath[i + 1]); // intersection is never empty because 'path' should be a path in a dual graph.
 
-                returnPath.Add(CliqueGraph<T>.Pick(intersection));
+                returnPath.Add(Pick(intersection));
             }
 
             return returnPath;
@@ -819,7 +820,7 @@ namespace DataStructures.Graphs
         /// <typeparam name="V">The 1st type parameter.</typeparam>
         static V Pick<V>(IEnumerable<V> Set)
         {
-            IEnumerator<V> enumerator = ((IEnumerable<V>)Set).GetEnumerator();
+            IEnumerator<V> enumerator = Set.GetEnumerator();
             V ret = enumerator.Current;
             enumerator.Dispose();
             return ret;

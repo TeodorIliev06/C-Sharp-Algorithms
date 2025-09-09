@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-using DataStructures.Common;
-using DataStructures.Lists;
-
-namespace DataStructures.Heaps
+﻿namespace DataStructures.Heaps
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+    using DataStructures.Common;
+
     /// <summary>
     /// BINOMIAL MIN HEAP Data Structure
     /// </summary>
@@ -35,12 +35,12 @@ namespace DataStructures.Heaps
             // Helper boolean flags
             public bool HasSiblings
             {
-                get { return this.Sibling != null; }
+                get { return Sibling != null; }
             }
 
             public bool HasChildren
             {
-                get { return this.Child != null; }
+                get { return Child != null; }
             }
         }
 
@@ -157,7 +157,7 @@ namespace DataStructures.Heaps
         {
             if (treeRoot == null)
                 return null;
-            return new BinomialNode<T>() { Value = treeRoot.Value, Child = _cloneTree(treeRoot.Child), Sibling = _cloneTree(treeRoot.Sibling) };
+            return new BinomialNode<T> { Value = treeRoot.Value, Child = _cloneTree(treeRoot.Child), Sibling = _cloneTree(treeRoot.Sibling) };
         }
 
 
@@ -196,7 +196,7 @@ namespace DataStructures.Heaps
             _forest = new ArrayList<BinomialNode<T>>(newCollection.Count + 1);
 
             for (int i = 0; i < newCollection.Count; ++i)
-                this.Add(newCollection[i]);
+                Add(newCollection[i]);
         }
 
         /// <summary>
@@ -277,13 +277,13 @@ namespace DataStructures.Heaps
             // One capacity-change step
             if (_size > _forest.Count)
             {
-                int newSize = Math.Max(this._forest.Count, otherHeap._forest.Count) + 1;
-                this._forest.Resize(newSize);
+                int newSize = Math.Max(_forest.Count, otherHeap._forest.Count) + 1;
+                _forest.Resize(newSize);
             }
 
             for (int i = 0, j = 1; j <= _size; i++, j *= 2)
             {
-                BinomialNode<T> treeRoot1 = (_forest.IsEmpty == true ? null : _forest[i]);
+                BinomialNode<T> treeRoot1 = (_forest.IsEmpty ? null : _forest[i]);
                 BinomialNode<T> treeRoot2 = (i < otherHeap._forest.Count ? otherHeap._forest[i] : null);
 
                 int whichCase = (treeRoot1 == null ? 0 : 1);
@@ -297,29 +297,29 @@ namespace DataStructures.Heaps
                     case 1:     /* Only this */
                         break;
                     case 2:     /* Only otherHeap */
-                        this._forest[i] = treeRoot2;
+                        _forest[i] = treeRoot2;
                         otherHeap._forest[i] = null;
                         break;
                     case 4:     /* Only carryNode */
-                        this._forest[i] = carryNode;
+                        _forest[i] = carryNode;
                         carryNode = null;
                         break;
 
                     /*** BINARY CASES ***/
                     case 3:     /* this and otherHeap */
                         carryNode = _combineTrees(treeRoot1, treeRoot2);
-                        this._forest[i] = otherHeap._forest[i] = null;
+                        _forest[i] = otherHeap._forest[i] = null;
                         break;
                     case 5:     /* this and carryNode */
                         carryNode = _combineTrees(treeRoot1, carryNode);
-                        this._forest[i] = null;
+                        _forest[i] = null;
                         break;
                     case 6:     /* otherHeap and carryNode */
                         carryNode = _combineTrees(treeRoot2, carryNode);
                         otherHeap._forest[i] = null;
                         break;
                     case 7:     /* all the nodes */
-                        this._forest[i] = carryNode;
+                        _forest[i] = carryNode;
                         carryNode = _combineTrees(treeRoot1, treeRoot2);
                         otherHeap._forest[i] = null;
                         break;

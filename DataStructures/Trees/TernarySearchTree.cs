@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DataStructures.Trees
+﻿namespace DataStructures.Trees
 {
+    using System;
+
     public class TernarySearchTree
     {
         public TernaryTreeNode Root { get; private set; }
@@ -50,7 +48,8 @@ namespace DataStructures.Trees
                 return currentNode.GetMiddleChild;
             }
             //Right Branch
-            else if (word[index] > currentNode.Value)
+
+            if (word[index] > currentNode.Value)
             {
                 if (currentNode.GetRightChild == null)
                     InsertInTree(currentNode.AddRightChild(word[index], word.Length == index + 1), word, ref index);
@@ -58,13 +57,11 @@ namespace DataStructures.Trees
                 return currentNode.GetRightChild;
             }
             //Left Branch
-            else
-            {
-                if (currentNode.GetLeftChild == null)
-                    InsertInTree(currentNode.AddLeftChild(word[index], word.Length == index + 1), word, ref index);
 
-                return currentNode.GetLeftChild;
-            }
+            if (currentNode.GetLeftChild == null)
+                InsertInTree(currentNode.AddLeftChild(word[index], word.Length == index + 1), word, ref index);
+
+            return currentNode.GetLeftChild;
         }
 
         void InsertInTree(TernaryTreeNode currentNode, string word, ref int currentIndex)

@@ -1,9 +1,11 @@
 ﻿namespace DataStructures.Trees
 {
+    using System;
+
     /// <summary>
     /// Red-Black Tree Map Node.
     /// </summary>
-    public class RedBlackTreeMapNode<TKey, TValue> : BSTMapNode<TKey, TValue> where TKey : System.IComparable<TKey>
+    public class RedBlackTreeMapNode<TKey, TValue> : BSTMapNode<TKey, TValue> where TKey : IComparable<TKey>
     {
         private RedBlackTreeColors _color;
 
@@ -24,8 +26,8 @@
 
         public virtual RedBlackTreeColors Color
         {
-            get { return this._color; }
-            set { this._color = value; }
+            get { return _color; }
+            set { _color = value; }
         }
 
         public new RedBlackTreeMapNode<TKey, TValue> Parent
@@ -71,7 +73,7 @@
         /// </summary>
         public virtual RedBlackTreeMapNode<TKey, TValue> Sibling
         {
-            get { return (this.Parent == null ? null : (this.IsLeftChild ? this.Parent.RightChild : this.Parent.LeftChild)); }
+            get { return (Parent == null ? null : (IsLeftChild ? Parent.RightChild : Parent.LeftChild)); }
         }
 
         /// <summary>
@@ -79,7 +81,7 @@
         /// </summary>
         public virtual RedBlackTreeMapNode<TKey, TValue> GrandParent
         {
-            get { return (this.Parent == null ? null : this.Parent.Parent); }
+            get { return (Parent == null ? null : Parent.Parent); }
         }
 
     }

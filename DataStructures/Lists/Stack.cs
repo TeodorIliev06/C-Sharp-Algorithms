@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DataStructures.Lists
+﻿namespace DataStructures.Lists
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
     /// <summary>
     /// The Stack (LIFO) Data Structure.
     /// </summary>
@@ -128,9 +129,9 @@ namespace DataStructures.Lists
                 yield return _collection[i];
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
     }

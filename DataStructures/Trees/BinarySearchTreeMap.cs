@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
-using DataStructures.Common;
-
-namespace DataStructures.Trees
+﻿namespace DataStructures.Trees
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using DataStructures.Common;
+
     /// <summary>
     /// Implements a generic Binary Search Tree Map data structure.
     /// </summary>
@@ -31,8 +31,8 @@ namespace DataStructures.Trees
 
         public virtual BSTMapNode<TKey, TValue> Root
         {
-            get { return this._root; }
-            internal set { this._root = value; }
+            get { return _root; }
+            internal set { _root = value; }
         }
 
 
@@ -86,7 +86,7 @@ namespace DataStructures.Trees
         protected virtual bool _insertNode(BSTMapNode<TKey, TValue> newNode)
         {
             // Handle empty trees
-            if (this.Root == null)
+            if (Root == null)
             {
                 Root = newNode;
                 _count++;
@@ -94,7 +94,7 @@ namespace DataStructures.Trees
             }
 
             if (newNode.Parent == null)
-                newNode.Parent = this.Root;
+                newNode.Parent = Root;
 
             // Check for value equality and whether inserting duplicates is allowed
             if (_allowDuplicates == false && newNode.Parent.Key.IsEqualTo(newNode.Key))
@@ -183,7 +183,7 @@ namespace DataStructures.Trees
             }
             else //this node has no children
             {
-                _replaceNodeInParent(node, null);
+                _replaceNodeInParent(node);
                 _count--;
             }
 
@@ -395,7 +395,7 @@ namespace DataStructures.Trees
             {
                 for (int i = 0; i < collection.Length; ++i)
                 {
-                    this.Insert(collection[i], default(TValue));
+                    Insert(collection[i], default(TValue));
                 }
             }
         }
@@ -412,7 +412,7 @@ namespace DataStructures.Trees
             {
                 for (int i = 0; i < collection.Length; ++i)
                 {
-                    this.Insert(collection[i].Key, collection[i].Value);
+                    Insert(collection[i].Key, collection[i].Value);
                 }
             }
         }
@@ -429,7 +429,7 @@ namespace DataStructures.Trees
             {
                 for (int i = 0; i < collection.Count; ++i)
                 {
-                    this.Insert(collection[i], default(TValue));
+                    Insert(collection[i], default(TValue));
                 }
             }
         }
@@ -446,7 +446,7 @@ namespace DataStructures.Trees
             {
                 for (int i = 0; i < collection.Count; ++i)
                 {
-                    this.Insert(collection[i].Key, collection[i].Value);
+                    Insert(collection[i].Key, collection[i].Value);
                 }
             }
         }
@@ -613,7 +613,7 @@ namespace DataStructures.Trees
         /// <returns>The array.</returns>
         public virtual KeyValuePair<TKey, TValue>[] ToArray()
         {
-            return this.ToList().ToArray();
+            return ToList().ToArray();
         }
 
         /// <summary>

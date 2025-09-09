@@ -4,14 +4,15 @@
  * A hash table that implements the Separate-Chaining scheme for resolving keys-collisions. It also implements auto-resizing (expansion and contraction).
  */
 
-using System;
-using System.Collections.Generic;
-
-using DataStructures.Common;
-using DataStructures.Lists;
-
 namespace DataStructures.Dictionaries
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+    using DataStructures.Common;
+
     /// <summary>
     /// Hash Table with Chaining.
     /// </summary>
@@ -54,14 +55,14 @@ namespace DataStructures.Dictionaries
         /// </summary>
         public ChainedHashTable()
         {
-            this._size = 0;
-            this._hashTableStore = new DLinkedList<TKey, TValue>[_defaultCapacity];
-            this._freeSlotsCount = this._hashTableStore.Length;
-            this._keysComparer = EqualityComparer<TKey>.Default;
-            this._valuesComparer = EqualityComparer<TValue>.Default;
+            _size = 0;
+            _hashTableStore = new DLinkedList<TKey, TValue>[_defaultCapacity];
+            _freeSlotsCount = _hashTableStore.Length;
+            _keysComparer = EqualityComparer<TKey>.Default;
+            _valuesComparer = EqualityComparer<TValue>.Default;
 
-            this._keysCollection = new List<TKey>();
-            this._valuesCollection = new List<TValue>();
+            _keysCollection = new List<TKey>();
+            _valuesCollection = new List<TValue>();
         }
 
 
@@ -71,7 +72,7 @@ namespace DataStructures.Dictionaries
         private void _rehash(ref DLinkedList<TKey, TValue>[] newHashTableStore, int oldHashTableSize)
         {
             // Reset the free slots count
-            this._freeSlotsCount = newHashTableStore.Length;
+            _freeSlotsCount = newHashTableStore.Length;
 
             for (int i = 0; i < oldHashTableSize; ++i)
             {
@@ -144,22 +145,15 @@ namespace DataStructures.Dictionaries
                     newCapacity = minCapacity;
 
                 // Try to expand the size
-                try
-                {
-                    DLinkedList<TKey, TValue>[] newHashTableStore = new DLinkedList<TKey, TValue>[newCapacity];
+                DLinkedList<TKey, TValue>[] newHashTableStore = new DLinkedList<TKey, TValue>[newCapacity];
 
-                    // Rehash
-                    if (_size > 0)
-                    {
-                        _rehash(ref newHashTableStore, _hashTableStore.Length);
-                    }//end-if
-
-                    _hashTableStore = newHashTableStore;
-                }
-                catch (OutOfMemoryException)
+                // Rehash
+                if (_size > 0)
                 {
-                    throw;
-                }
+                    _rehash(ref newHashTableStore, _hashTableStore.Length);
+                }//end-if
+
+                _hashTableStore = newHashTableStore;
             }
         }
 
@@ -415,7 +409,7 @@ namespace DataStructures.Dictionaries
                 {
                     bool exists = _hashTableStore[hashcode].ContainsKey(key);
 
-                    if (exists == true)
+                    if (exists)
                         _hashTableStore[hashcode].UpdateValueByKey(key, value);
                 }
 
@@ -443,7 +437,7 @@ namespace DataStructures.Dictionaries
             }
             else if (_hashTableStore[hashcode].Count > 0)
             {
-                if (_hashTableStore[hashcode].ContainsKey(key) == true)
+                if (_hashTableStore[hashcode].ContainsKey(key))
                     throw new ArgumentException("Key already exists in the hash table.");
             }
 
@@ -632,7 +626,7 @@ namespace DataStructures.Dictionaries
             throw new NotImplementedException();
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
         }

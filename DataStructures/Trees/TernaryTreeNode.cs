@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DataStructures.Trees
+﻿namespace DataStructures.Trees
 {
     public class TernaryTreeNode
     {
@@ -18,15 +14,15 @@ namespace DataStructures.Trees
 
         public TernaryTreeNode(TernaryTreeNode parent)
         {
-            this.Parent = parent;
+            Parent = parent;
             childs = new TernaryTreeNode[3];
         }
 
         public TernaryTreeNode(TernaryTreeNode parent, char value, bool isFinal)
         {
-            this.Parent = parent;
-            this.Value = value;
-            this.FinalLetter = isFinal;
+            Parent = parent;
+            Value = value;
+            FinalLetter = isFinal;
             childs = new TernaryTreeNode[3];
         }
 

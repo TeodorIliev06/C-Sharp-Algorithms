@@ -1,9 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-
-namespace DataStructures.Lists
+﻿namespace DataStructures.Lists
 {
+    using System;
+    using System.Linq;
+    using System.Collections;
+    using System.Collections.Generic;
+
     /// <summary>
     /// The Array-Based List Data Structure.
     /// </summary>
@@ -16,7 +17,7 @@ namespace DataStructures.Lists
         // This sets the default maximum array length to refer to MAXIMUM_ARRAY_LENGTH_x64
         // Set the flag IsMaximumCapacityReached to false
         bool DefaultMaxCapacityIsX64 = true;
-        bool IsMaximumCapacityReached = false;
+        bool IsMaximumCapacityReached;
 
         // The C# Maximum Array Length (before encountering overflow)
         // Reference: http://referencesource.microsoft.com/#mscorlib/system/array.cs,2d2b551eabe74985
@@ -79,7 +80,7 @@ namespace DataStructures.Lists
 
                 // Allow the list to grow to maximum possible capacity (~2G elements) before encountering overflow.
                 // Note that this check works even when _items.Length overflowed thanks to the (uint) cast
-                int maxCapacity = (DefaultMaxCapacityIsX64 == true ? MAXIMUM_ARRAY_LENGTH_x64 : MAXIMUM_ARRAY_LENGTH_x86);
+                int maxCapacity = (DefaultMaxCapacityIsX64 ? MAXIMUM_ARRAY_LENGTH_x64 : MAXIMUM_ARRAY_LENGTH_x86);
 
                 if (newCapacity < minCapacity)
                     newCapacity = minCapacity;
@@ -90,7 +91,7 @@ namespace DataStructures.Lists
                     IsMaximumCapacityReached = true;
                 }
 
-                this._resizeCapacity(newCapacity);
+                _resizeCapacity(newCapacity);
             }
         }
 
@@ -105,11 +106,11 @@ namespace DataStructures.Lists
             {
                 try
                 {
-                    Array.Resize<T>(ref _collection, newCapacity);
+                    Array.Resize(ref _collection, newCapacity);
                 }
                 catch (OutOfMemoryException)
                 {
-                    if (DefaultMaxCapacityIsX64 == true)
+                    if (DefaultMaxCapacityIsX64)
                     {
                         DefaultMaxCapacityIsX64 = false;
                         _ensureCapacity(newCapacity);
@@ -256,7 +257,7 @@ namespace DataStructures.Lists
                 _ensureCapacity(_size + elements.Count());
 
                 foreach (var element in elements)
-                    this.Add(element);
+                    Add(element);
             }
         }
 
@@ -278,7 +279,7 @@ namespace DataStructures.Lists
                 _ensureCapacity(_size + count);
 
                 for (int i = 0; i < count; i++)
-                    this.Add(value);
+                    Add(value);
             }
         }
 
@@ -391,20 +392,20 @@ namespace DataStructures.Lists
         /// </summary>
         public void Resize(int newSize, T defaultValue)
         {
-            int currentSize = this.Count;
+            int currentSize = Count;
 
             if (newSize < currentSize)
             {
-                this._ensureCapacity(newSize);
+                _ensureCapacity(newSize);
             }
             else if (newSize > currentSize)
             {
                 // Optimisation step.
                 // This is just to avoid multiple automatic capacity changes.
-                if (newSize > this._collection.Length)
-                    this._ensureCapacity(newSize + 1);
+                if (newSize > _collection.Length)
+                    _ensureCapacity(newSize + 1);
 
-                this.AddRange(Enumerable.Repeat<T>(defaultValue, newSize - currentSize));
+                AddRange(Enumerable.Repeat(defaultValue, newSize - currentSize));
             }
         }
 
@@ -471,11 +472,11 @@ namespace DataStructures.Lists
         public bool Contains(T dataItem)
         {
             // Null-value check
-            if ((Object)dataItem == null)
+            if (dataItem == null)
             {
                 for (int i = 0; i < _size; ++i)
                 {
-                    if ((Object)_collection[i] == null) return true;
+                    if (_collection[i] == null) return true;
                 }
             }
             else
@@ -509,11 +510,11 @@ namespace DataStructures.Lists
             }
 
             // Null-value check
-            if ((Object)dataItem == null)
+            if (dataItem == null)
             {
                 for (int i = 0; i < _size; ++i)
                 {
-                    if ((Object)_collection[i] == null) return true;
+                    if (_collection[i] == null) return true;
                 }
             }
             else
@@ -594,7 +595,7 @@ namespace DataStructures.Lists
             int endIndex = startIndex + count;
             for (int index = startIndex; index < endIndex; ++index)
             {
-                if (searchMatch(_collection[index]) == true) return index;
+                if (searchMatch(_collection[index])) return index;
             }
 
             // Not found, return -1
@@ -765,11 +766,11 @@ namespace DataStructures.Lists
         /// <returns>Array.</returns>
         public List<T> ToList()
         {
-            var newList = new List<T>(this.Count);
+            var newList = new List<T>(Count);
 
-            if (this.Count > 0)
+            if (Count > 0)
             {
-                for (int i = 0; i < this.Count; ++i)
+                for (int i = 0; i < Count; ++i)
                 {
                     newList.Add(_collection[i]);
                 }
@@ -796,7 +797,7 @@ namespace DataStructures.Lists
                 listAsString = String.Format("{0}{1}[{2}] => {3}\r\n", listAsString, preLineIndent, i, _collection[i]);
             }
 
-            if (addHeader == true)
+            if (addHeader)
             {
                 listAsString = String.Format("ArrayList of count: {0}.\r\n(\r\n{1})", Count, listAsString);
             }
@@ -816,9 +817,9 @@ namespace DataStructures.Lists
             }
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
     }

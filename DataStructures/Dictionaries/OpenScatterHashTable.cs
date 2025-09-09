@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using DataStructures.Common;
-
-namespace DataStructures.Dictionaries
+﻿namespace DataStructures.Dictionaries
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using DataStructures.Common;
 
     /// <summary>
     /// Hash Table with Open Addressing.
@@ -27,11 +28,11 @@ namespace DataStructures.Dictionaries
                 Status = status;
             }
 
-            public bool IsEmpty { get { return this.Status == EntryStatus.Empty; } }
+            public bool IsEmpty { get { return Status == EntryStatus.Empty; } }
 
-            public bool IsOccupied { get { return this.Status == EntryStatus.Occupied; } }
+            public bool IsOccupied { get { return Status == EntryStatus.Occupied; } }
 
-            public bool IsDeleted { get { return this.Status == EntryStatus.Deleted; } }
+            public bool IsDeleted { get { return Status == EntryStatus.Deleted; } }
         }
 
 
@@ -144,21 +145,14 @@ namespace DataStructures.Dictionaries
                     newCapacity = MAX_PRIME_ARRAY_LENGTH;
 
                 // Try to expand the size
-                try
-                {
-                    HashTableEntry<TKey, TValue>[] newKeysMap = new HashTableEntry<TKey, TValue>[newCapacity];
+                HashTableEntry<TKey, TValue>[] newKeysMap = new HashTableEntry<TKey, TValue>[newCapacity];
 
-                    if (_size > 0)
-                    {
-                        // REHASH
-                    }
-
-                    _hashTableStore = newKeysMap;
-                }
-                catch (OutOfMemoryException)
+                if (_size > 0)
                 {
-                    throw;
+                    // REHASH
                 }
+
+                _hashTableStore = newKeysMap;
             }
         }
 
@@ -275,7 +269,7 @@ namespace DataStructures.Dictionaries
             throw new NotImplementedException();
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
         }

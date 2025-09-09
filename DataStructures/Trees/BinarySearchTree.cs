@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Collections;
-
-using DataStructures.Common;
-
-namespace DataStructures.Trees
+﻿namespace DataStructures.Trees
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using DataStructures.Common;
+
     /// <summary>
     /// Implements a generic Binary Search Tree data structure.
     /// </summary>
@@ -34,8 +33,8 @@ namespace DataStructures.Trees
 
         public virtual BSTNode<T> Root
         {
-            get { return this._root; }
-            internal set { this._root = value; }
+            get { return _root; }
+            internal set { _root = value; }
         }
 
 
@@ -118,7 +117,7 @@ namespace DataStructures.Trees
             }
             else //this node has no children
             {
-                _replaceNodeInParent(node, null);
+                _replaceNodeInParent(node);
                 _count--;
             }
 
@@ -133,7 +132,7 @@ namespace DataStructures.Trees
         protected virtual bool _insertNode(BSTNode<T> newNode)
         {
             // Handle empty trees
-            if (this.Root == null)
+            if (Root == null)
             {
                 Root = newNode;
                 _count++;
@@ -141,7 +140,7 @@ namespace DataStructures.Trees
             }
 
             if (newNode.Parent == null)
-                newNode.Parent = this.Root;
+                newNode.Parent = Root;
 
             // Check for value equality and whether inserting duplicates is allowed
             if (_allowDuplicates == false && newNode.Parent.Value.IsEqualTo(newNode.Value))
@@ -419,7 +418,7 @@ namespace DataStructures.Trees
             {
                 for (int i = 0; i < collection.Length; ++i)
                 {
-                    this.Insert(collection[i]);
+                    Insert(collection[i]);
                 }
             }
         }
@@ -436,7 +435,7 @@ namespace DataStructures.Trees
             {
                 for (int i = 0; i < collection.Count; ++i)
                 {
-                    this.Insert(collection[i]);
+                    Insert(collection[i]);
                 }
             }
         }
@@ -587,7 +586,7 @@ namespace DataStructures.Trees
         /// <returns>The array.</returns>
         public virtual T[] ToArray()
         {
-            return this.ToList().ToArray();
+            return ToList().ToArray();
         }
 
         /// <summary>

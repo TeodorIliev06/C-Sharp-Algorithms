@@ -8,11 +8,12 @@
  * This class is used in the Cuckoo Hash Table implementation.
  */
 
-using System;
-using DataStructures.Common;
-
 namespace DataStructures.Hashing
 {
+    using System;
+
+    using DataStructures.Common;
+
     /// <summary>
     /// Implements a family of Universal Hash Functions
     /// </summary>

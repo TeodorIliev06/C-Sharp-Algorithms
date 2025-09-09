@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-
-using DataStructures.Common;
-using DataStructures.Trees;
-
-namespace DataStructures.SortedCollections
+﻿namespace DataStructures.SortedCollections
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using DataStructures.Trees;
+    using DataStructures.Common;
+
     /// <summary>
     /// Sorted List (RBTree-based).
     /// </summary>
@@ -22,7 +23,7 @@ namespace DataStructures.SortedCollections
         /// </summary>
         public SortedList()
         {
-            this._collection = new RedBlackTree<T>();
+            _collection = new RedBlackTree<T>();
         }
 
         /// <summary>
@@ -30,7 +31,7 @@ namespace DataStructures.SortedCollections
         /// </summary>
         public bool IsEmpty
         {
-            get { return this.Count == 0; }
+            get { return Count == 0; }
         }
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace DataStructures.SortedCollections
         /// </summary>
         public int Count
         {
-            get { return this._collection.Count; }
+            get { return _collection.Count; }
         }
 
         public bool IsReadOnly
@@ -60,11 +61,11 @@ namespace DataStructures.SortedCollections
         public int IndexOf(T item)
         {
             // If the item doesn't exist in collection, return -1
-            if (!this.Contains(item))
+            if (!Contains(item))
                 return -1;
 
             int index = 0;
-            var enumerator = this._collection.GetInOrderEnumerator();
+            var enumerator = _collection.GetInOrderEnumerator();
 
             while (enumerator.MoveNext())
             {
@@ -91,10 +92,10 @@ namespace DataStructures.SortedCollections
                     throw new Exception("List is empty.");
                 
                 // Validate index range
-                if (index < 0 || index >= this.Count)
+                if (index < 0 || index >= Count)
                     throw new IndexOutOfRangeException();
 
-                var enumerator = this._collection.GetInOrderEnumerator();
+                var enumerator = _collection.GetInOrderEnumerator();
 
                 // Keep moving to the next item until index becomes 0
                 while (enumerator.MoveNext() && index > 0)
@@ -107,8 +108,8 @@ namespace DataStructures.SortedCollections
             {
                 try
                 {
-                    this._collection.Remove(this[index]);
-                    this.Add(value);
+                    _collection.Remove(this[index]);
+                    Add(value);
                 }
                 catch (IndexOutOfRangeException)
                 {
@@ -123,7 +124,7 @@ namespace DataStructures.SortedCollections
         /// </summary>
         public void Add(T item)
         {
-            this._collection.Insert(item);
+            _collection.Insert(item);
         }
 
         /// <summary>
@@ -133,7 +134,7 @@ namespace DataStructures.SortedCollections
         {
             try 
             {
-                this._collection.Remove(item);
+                _collection.Remove(item);
                 return true;
             }
             catch(Exception)
@@ -160,17 +161,17 @@ namespace DataStructures.SortedCollections
         public void RemoveAt(int index)
         {
             // Validate index range
-            if (index < 0 || index >= this.Count)
+            if (index < 0 || index >= Count)
                 throw new IndexOutOfRangeException();
 
-            var enumerator = this._collection.GetInOrderEnumerator();
+            var enumerator = _collection.GetInOrderEnumerator();
 
             // Keep moving to the next item until index becomes 0
             while (enumerator.MoveNext() && index > 0)
                 index--;
 
             // Remove the enumerator's Current value from collection
-            this.Remove(enumerator.Current);
+            Remove(enumerator.Current);
         }
 
         /// <summary>
@@ -182,7 +183,7 @@ namespace DataStructures.SortedCollections
             if(array == null)
                 throw new ArgumentNullException("Array cannot be Null.");
             
-            var enumerator = this._collection.GetInOrderEnumerator();
+            var enumerator = _collection.GetInOrderEnumerator();
 
             // Copy the items from the inorder-walker of the tree to the passed array
             while (enumerator.MoveNext() && arrayIndex < array.Length)
@@ -197,7 +198,7 @@ namespace DataStructures.SortedCollections
         /// </summary>
         public void Clear()
         {
-            this._collection = new RedBlackTree<T>();
+            _collection = new RedBlackTree<T>();
         }
 
 
@@ -205,12 +206,12 @@ namespace DataStructures.SortedCollections
 
         public IEnumerator<T> GetEnumerator()
         {
-            return this._collection.GetInOrderEnumerator();
+            return _collection.GetInOrderEnumerator();
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         #endregion

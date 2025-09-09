@@ -9,13 +9,13 @@
  * Implements the IGraph<T> interface.
  */
 
-using System;
-using System.Collections.Generic;
-
-using DataStructures.Lists;
-
 namespace DataStructures.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+
     public class DirectedSparseGraph<T> : IGraph<T> where T : IComparable<T>
     {
         /// <summary>
@@ -94,17 +94,17 @@ namespace DataStructures.Graphs
 
         IEnumerable<IEdge<T>> IGraph<T>.Edges
         {
-            get { return this.Edges; }
+            get { return Edges; }
         }
 
         IEnumerable<IEdge<T>> IGraph<T>.IncomingEdges(T vertex)
         {
-            return this.IncomingEdges(vertex);
+            return IncomingEdges(vertex);
         }
 
         IEnumerable<IEdge<T>> IGraph<T>.OutgoingEdges(T vertex)
         {
-            return this.OutgoingEdges(vertex);
+            return OutgoingEdges(vertex);
         }
 
 
@@ -311,7 +311,7 @@ namespace DataStructures.Graphs
                     adjacents = String.Format("{0}{1},", adjacents, adjacentNode);
 
                 if (adjacents.Length > 0)
-                    adjacents = adjacents.TrimEnd(new char[] { ',', ' ' });
+                    adjacents = adjacents.TrimEnd(',', ' ');
 
                 output = String.Format("{0}{1}]", output, adjacents);
             }
@@ -341,7 +341,7 @@ namespace DataStructures.Graphs
                 throw new KeyNotFoundException("The source vertex doesn't exist.");
 
             var visited = new HashSet<T>();
-            var stack = new DataStructures.Lists.Stack<T>();
+            var stack = new Lists.Stack<T>();
             var listOfNodes = new ArrayList<T>(VerticesCount);
 
             stack.Push(source);
@@ -386,7 +386,7 @@ namespace DataStructures.Graphs
                 throw new KeyNotFoundException("The source vertex doesn't exist.");
 
             var visited = new HashSet<T>();
-            var queue = new DataStructures.Lists.Queue<T>();
+            var queue = new Lists.Queue<T>();
             var listOfNodes = new ArrayList<T>(VerticesCount);
 
             listOfNodes.Add(source);

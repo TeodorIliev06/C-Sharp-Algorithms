@@ -1,9 +1,11 @@
 ﻿namespace DataStructures.Trees
 {
+    using System;
+
     /// <summary>
     /// The binary search tree node.
     /// </summary>
-    public class BSTNode<T> : System.IComparable<BSTNode<T>> where T : System.IComparable<T>
+    public class BSTNode<T> : IComparable<BSTNode<T>> where T : IComparable<T>
     {
         private T _value;
         private BSTNode<T> _parent;
@@ -22,26 +24,26 @@
 
         public virtual T Value
         {
-            get { return this._value; }
-            set { this._value = value; }
+            get { return _value; }
+            set { _value = value; }
         }
 
         public virtual BSTNode<T> Parent
         {
-            get { return this._parent; }
-            set { this._parent = value; }
+            get { return _parent; }
+            set { _parent = value; }
         }
 
         public virtual BSTNode<T> LeftChild
         {
-            get { return this._left; }
-            set { this._left = value; }
+            get { return _left; }
+            set { _left = value; }
         }
 
         public virtual BSTNode<T> RightChild
         {
-            get { return this._right; }
-            set { this._right = value; }
+            get { return _right; }
+            set { _right = value; }
         }
 
         /// <summary>
@@ -49,7 +51,7 @@
         /// </summary>
         public virtual bool HasChildren
         {
-            get { return (this.ChildrenCount > 0); }
+            get { return (ChildrenCount > 0); }
         }
 
         /// <summary>
@@ -57,33 +59,33 @@
         /// </summary>
         public virtual bool HasLeftChild
         {
-            get { return (this.LeftChild != null); }
+            get { return (LeftChild != null); }
         }
 
         /// <summary>
         ///     Check if this node has only one child and whether it is the right child.
         /// </summary>
-        public virtual bool HasOnlyRightChild => !this.HasLeftChild && this.HasRightChild;
+        public virtual bool HasOnlyRightChild => !HasLeftChild && HasRightChild;
 
         /// <summary>
         /// Checks whether this node has right child.
         /// </summary>
         public virtual bool HasRightChild
         {
-            get { return (this.RightChild != null); }
+            get { return (RightChild != null); }
         }
 
         /// <summary>
         ///     Check if this node has only one child and whether it is the left child.
         /// </summary>
-        public virtual bool HasOnlyLeftChild => !this.HasRightChild && this.HasLeftChild;
+        public virtual bool HasOnlyLeftChild => !HasRightChild && HasLeftChild;
 
         /// <summary>
         /// Checks whether this node is the left child of it's parent.
         /// </summary>
         public virtual bool IsLeftChild
         {
-            get { return (this.Parent != null && this.Parent.LeftChild == this); }
+            get { return (Parent != null && Parent.LeftChild == this); }
         }
 
         /// <summary>
@@ -91,7 +93,7 @@
         /// </summary>
         public virtual bool IsRightChild
         {
-            get { return (this.Parent != null && this.Parent.RightChild == this); }
+            get { return (Parent != null && Parent.RightChild == this); }
         }
 
         /// <summary>
@@ -99,7 +101,7 @@
         /// </summary>
         public virtual bool IsLeafNode
         {
-            get { return (this.ChildrenCount == 0); }
+            get { return (ChildrenCount == 0); }
         }
 
         /// <summary>
@@ -112,9 +114,9 @@
             {
                 int count = 0;
 
-                if (this.HasLeftChild)
+                if (HasLeftChild)
                     count++;
-                if (this.HasRightChild)
+                if (HasRightChild)
                     count++;
 
                 return count;
@@ -129,7 +131,7 @@
             if (other == null)
                 return -1;
 
-            return this.Value.CompareTo(other.Value);
+            return Value.CompareTo(other.Value);
         }
     }//end-of-bstnode
 }

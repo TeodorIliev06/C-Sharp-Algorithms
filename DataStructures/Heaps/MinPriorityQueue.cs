@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-using DataStructures.Common;
-
-namespace DataStructures.Heaps
+﻿namespace DataStructures.Heaps
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Common;
+
     /// <summary>
     /// Implements the Priority Queue Data Structure.
     /// <typeparam name="TKey">Node's Value type</typeparam>
@@ -48,7 +48,7 @@ namespace DataStructures.Heaps
 
             // Initialize.
             _keys = new Dictionary<TKey, long>();
-            _heap = new BinaryMinHeap<PriorityQueueNode<TKey, TPriority>>((int)capacity, this._priorityComparer);
+            _heap = new BinaryMinHeap<PriorityQueueNode<TKey, TPriority>>((int)capacity, _priorityComparer);
         }
 
 
@@ -273,8 +273,8 @@ namespace DataStructures.Heaps
 
         public PriorityQueueNode(TKey value, TPriority priority)
         {
-            this.Key = value;
-            this.Priority = priority;
+            Key = value;
+            Priority = priority;
         }
 
         public int CompareTo(PriorityQueueNode<TKey, TPriority> other)
@@ -282,7 +282,7 @@ namespace DataStructures.Heaps
             if (other == null)
                 return -1;
 
-            return this.Priority.CompareTo(other.Priority);
+            return Priority.CompareTo(other.Priority);
         }
     }//end-of-node-class
 

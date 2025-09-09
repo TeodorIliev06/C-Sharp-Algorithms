@@ -11,14 +11,13 @@
  * Implements the IWeightedGraph<T> interface.
  */
 
-using System;
-using System.Collections.Generic;
-
-using DataStructures.Common;
-using DataStructures.Lists;
-
 namespace DataStructures.Graphs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+    using DataStructures.Common;
 
     /// <summary>
     /// This class represents the graph as an adjacency-matrix (two dimensional integer array).
@@ -29,7 +28,7 @@ namespace DataStructures.Graphs
         /// INSTANCE VARIABLES
         /// </summary>
         private const long EMPTY_EDGE_SLOT = 0;
-        private const object EMPTY_VERTEX_SLOT = (object)null;
+        private const object EMPTY_VERTEX_SLOT = null;
 
         // Store edges and their weights as integers.
         // Any edge with a value of zero means it doesn't exist. Otherwise, it exist with a specific weight value.
@@ -335,7 +334,7 @@ namespace DataStructures.Graphs
                     adjacents = String.Format("{0}{1}({2}), ", adjacents, adjacentNode.Key, adjacentNode.Value);
 
                 if (adjacents.Length > 0)
-                    adjacents = adjacents.TrimEnd(new char[] { ',', ' ' });
+                    adjacents = adjacents.TrimEnd(',', ' ');
 
                 output = String.Format("{0}{1}]", output, adjacents);
             }

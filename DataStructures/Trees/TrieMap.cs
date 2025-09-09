@@ -7,13 +7,13 @@
  * This class implements the IDictionary and IEnumerable interfaces.
  */
 
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-
 namespace DataStructures.Trees
 {
+    using System;
+    using System.Linq;
+    using System.Collections;
+    using System.Collections.Generic;
+
     /// <summary>
     /// The Trie Map Data Structure (a.k.a Prefix Tree).
     /// </summary>
@@ -135,7 +135,7 @@ namespace DataStructures.Trees
         public bool ContainsWord(string word)
         {
             TRecord record;
-            return this.SearchByWord(word, out record);
+            return SearchByWord(word, out record);
         }
 
         /// <summary>
@@ -281,13 +281,13 @@ namespace DataStructures.Trees
         {
             TRecord record;
             var status = SearchByWord(item.Key, out record);
-            return (status == true && _recordsComparer.Equals(item.Value, record));
+            return (status && _recordsComparer.Equals(item.Value, record));
         }
 
         void ICollection<KeyValuePair<string, TRecord>>.CopyTo(KeyValuePair<string, TRecord>[] array, int arrayIndex)
         {
             var tempArray = _root.GetTerminalChildren()
-                .Select<TrieMapNode<TRecord>, KeyValuePair<String, TRecord>>(item => new KeyValuePair<String, TRecord>(item.Word, item.Record))
+                .Select(item => new KeyValuePair<String, TRecord>(item.Word, item.Record))
                 .ToArray();
 
             Array.Copy(tempArray, 0, array, arrayIndex, Count);
@@ -313,7 +313,7 @@ namespace DataStructures.Trees
 
         void ICollection<KeyValuePair<string, TRecord>>.Add(KeyValuePair<string, TRecord> item)
         {
-            this.Add(item.Key, item.Value);
+            Add(item.Key, item.Value);
         }
 
         /// <summary>
@@ -323,7 +323,7 @@ namespace DataStructures.Trees
         {
             try
             {
-                this.Remove(word: key);
+                Remove(word: key);
                 return true;
             }
             catch
@@ -339,7 +339,7 @@ namespace DataStructures.Trees
         {
             try
             {
-                this.Remove(word: item.Key);
+                Remove(word: item.Key);
                 return true;
             }
             catch
@@ -354,7 +354,7 @@ namespace DataStructures.Trees
         public IEnumerator<KeyValuePair<string, TRecord>> GetEnumerator()
         {
             return _root.GetTerminalChildren()
-                    .Select<TrieMapNode<TRecord>, KeyValuePair<String, TRecord>>(item => new KeyValuePair<String, TRecord>(item.Word, item.Record))
+                    .Select(item => new KeyValuePair<String, TRecord>(item.Word, item.Record))
                     .GetEnumerator();
         }
 

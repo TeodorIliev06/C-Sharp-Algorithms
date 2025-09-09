@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace DataStructures.Lists 
+﻿namespace DataStructures.Lists 
 {
+    using System;
+    using System.Linq;
+    using System.Collections;
+    using System.Collections.Generic;
+
     public class CircularBuffer<T> : IEnumerable<T>, ICollection<T> where T : IComparable<T> 
     {
         private T[] _circularBuffer;
@@ -82,7 +82,7 @@ namespace DataStructures.Lists
         /// <param name="value">value to be added to the buffer</param>
         public void Add(T value) 
         {
-            if (CanOverride==false && IsFilledUp==true) 
+            if (CanOverride==false && IsFilledUp) 
             {
                 throw new CircularBufferFullException($"Circular Buffer is filled up. {value} can not be inserted");
             }
@@ -209,7 +209,7 @@ namespace DataStructures.Lists
         {
             if (!IsEmpty && Contains(item)) 
             {
-               var sourceArray = _circularBuffer.Except(new T[] { item }).ToArray();
+               var sourceArray = _circularBuffer.Except(new[] { item }).ToArray();
                 _circularBuffer = new T[Length + 1];
                 Array.Copy(sourceArray, _circularBuffer, sourceArray.Length);
 

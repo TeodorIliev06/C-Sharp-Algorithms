@@ -1,11 +1,13 @@
 ﻿namespace DataStructures.Trees
 {
+    using System;
+
     /// <summary>
     /// AVL Tree Node.
     /// </summary>
-    public class AVLTreeNode<T> : BSTNode<T> where T : System.IComparable<T>
+    public class AVLTreeNode<T> : BSTNode<T> where T : IComparable<T>
     {
-        private int _height = 0;
+        private int _height;
 
         public AVLTreeNode() : this(default(T), 0, null, null, null) { }
         public AVLTreeNode(T value) : this(value, 0, null, null, null) { }
@@ -20,8 +22,8 @@
 
         public virtual int Height
         {
-            get { return this._height; }
-            set { this._height = value; }
+            get { return _height; }
+            set { _height = value; }
         }
 
         public new AVLTreeNode<T> Parent

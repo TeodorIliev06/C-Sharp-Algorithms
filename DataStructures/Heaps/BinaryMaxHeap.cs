@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-using DataStructures.Common;
-using DataStructures.Lists;
-
-namespace DataStructures.Heaps
+﻿namespace DataStructures.Heaps
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DataStructures.Lists;
+    using DataStructures.Common;
+
     /// <summary>
     /// Maximum Heap Data Structure.
     /// </summary>
@@ -16,7 +16,7 @@ namespace DataStructures.Heaps
         /// _collection: The list of elements. Implemented as an array-based list with auto-resizing.
         /// </summary>
         private ArrayList<T> _collection { get; set; }
-        private Comparer<T> _heapComparer = Comparer<T>.Default;
+        private readonly Comparer<T> _heapComparer = Comparer<T>.Default;
 
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace DataStructures.Heaps
         {
             get
             {
-                if (index < 0 || index > this.Count || this.Count == 0)
+                if (index < 0 || index > Count || Count == 0)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -117,7 +117,7 @@ namespace DataStructures.Heaps
             }
             set
             {
-                if (index < 0 || index >= this.Count)
+                if (index < 0 || index >= Count)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -275,8 +275,8 @@ namespace DataStructures.Heaps
         /// </summary>
         public IMinHeap<T> ToMinHeap()
         {
-            BinaryMinHeap<T> newMinHeap = new BinaryMinHeap<T>(this.Count, this._heapComparer);
-            newMinHeap.Initialize(this._collection.ToArray());
+            BinaryMinHeap<T> newMinHeap = new BinaryMinHeap<T>(Count, _heapComparer);
+            newMinHeap.Initialize(_collection.ToArray());
             return newMinHeap;
         }
 

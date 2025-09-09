@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace DataStructures.Lists
+﻿namespace DataStructures.Lists
 {
+    using System;
+
     public class SkipListNode<T> : IComparable<SkipListNode<T>> where T : IComparable<T>
     {
         /// <summary>
@@ -27,8 +27,8 @@ namespace DataStructures.Lists
         /// </summary>
         public virtual T Value
         {
-            get { return this._value; }
-            private set { this._value = value; }
+            get { return _value; }
+            private set { _value = value; }
         }
 
         /// <summary>
@@ -36,8 +36,8 @@ namespace DataStructures.Lists
         /// </summary>
         public virtual SkipListNode<T>[] Forwards
         {
-            get { return this._forwards; }
-            private set { this._forwards = value; }
+            get { return _forwards; }
+            private set { _forwards = value; }
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace DataStructures.Lists
             if (other == null)
                 return -1;
 
-            return this.Value.CompareTo(other.Value);
+            return Value.CompareTo(other.Value);
         }
     }
 }

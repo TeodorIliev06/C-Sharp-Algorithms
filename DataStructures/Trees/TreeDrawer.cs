@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DataStructures.Common;
-
-namespace DataStructures.Trees
+﻿namespace DataStructures.Trees
 {
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using DataStructures.Common;
+
     public static class TreeDrawer
     {
         /// <summary>
@@ -98,7 +99,7 @@ namespace DataStructures.Trees
             string leftBranch = node.HasLeftChild ? "/" : " ";
             string rightBranch = node.HasRightChild ? "\\" : " ";
 
-            List<string> listOfLines = new List<string>()
+            List<string> listOfLines = new List<string>
             {
                 // 0
                 (new String(' ', leftPosition )) + nodeLabel + (new String(' ', (rightWidth - rightPosition))),
@@ -147,7 +148,7 @@ namespace DataStructures.Trees
 
             //
             // Start drawing
-            if (includeValues == true)
+            if (includeValues)
             {
                 nodeLabel = String.Format("<{0}: {1}>", Convert.ToString(node.Key), Convert.ToString(node.Value));
                 padValue = 4;
@@ -193,8 +194,8 @@ namespace DataStructures.Trees
 
             //
             // Construct the list of lines.
-            listOfLines = new List<string>()
-                {
+            listOfLines = new List<string>
+            {
                     // 0
                     (new String(' ', leftPosition )) + nodeLabel + (new String(' ', (rightWidth - rightPosition))),
 

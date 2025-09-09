@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DataStructures.Heaps
+﻿namespace DataStructures.Heaps
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Implements the Keyed Priority Queue Data Structure.
     /// All nodes have: a Key, a Value, a Priority
@@ -49,7 +49,7 @@ namespace DataStructures.Heaps
                     _priorityComparer = priorityComparer;
                 }
 
-                _heap = new BinaryMaxHeap<PriorityQueueNode<K, V, P>>(capacity, this._priorityComparer);
+                _heap = new BinaryMaxHeap<PriorityQueueNode<K, V, P>>(capacity, _priorityComparer);
                 _keysMap = new Dictionary<K, int>();
             }
             else
@@ -267,9 +267,9 @@ namespace DataStructures.Heaps
 
         public PriorityQueueNode(K key, V value, P priority)
         {
-            this.Key = key;
-            this.Value = value;
-            this.Priority = priority;
+            Key = key;
+            Value = value;
+            Priority = priority;
         }
 
         public int CompareTo(PriorityQueueNode<K, V, P> other)
@@ -277,7 +277,7 @@ namespace DataStructures.Heaps
             if (other == null)
                 return -1;
 
-            return this.Priority.CompareTo(other.Priority);
+            return Priority.CompareTo(other.Priority);
         }
     }//end-of-node-class
 

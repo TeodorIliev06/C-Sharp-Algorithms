@@ -6,12 +6,14 @@
  * Note: A more memory efficient implementation would use structs, but this is the simplest implementation possible.
  */
 
-using System;
-using System.Collections.Generic;
-using DataStructures.Common;
-
 namespace DataStructures.Lists
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using DataStructures.Common;
+
     /// <summary>
     /// THE SKIP-LIST DATA STRUCTURE
     /// </summary>
@@ -312,7 +314,7 @@ namespace DataStructures.Lists
         /// <summary>
         /// IEnumerable method implementation
         /// </summary>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
@@ -340,7 +342,7 @@ namespace DataStructures.Lists
                 throw new IndexOutOfRangeException();
 
             // Get enumerator
-            var enumarator = this.GetEnumerator();
+            var enumarator = GetEnumerator();
 
             // Copy elements as long as there is any in the list and as long as the index is within the valid range
             for (int i = arrayIndex; i < array.Length; ++i)

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DataStructures.Trees
+﻿namespace DataStructures.Trees
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// The Trie Node.
     /// </summary>
@@ -105,7 +105,7 @@ namespace DataStructures.Trees
             if (other == null)
                 return -1;
 
-            return this.Key.CompareTo(other.Key);
+            return Key.CompareTo(other.Key);
 
         }
 
