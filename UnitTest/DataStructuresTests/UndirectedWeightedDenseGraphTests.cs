@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DataStructures.Graphs;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using DataStructures.Graphs;
+
     public class UndirectedWeightedDenseGraphTests
     {
         [Fact]
@@ -19,7 +21,7 @@ namespace UnitTest.DataStructuresTests
         public void AddEdge_ShouldCreateEdge_WithProvidedWeight()
         {
             var graph = new UndirectedWeightedDenseGraph<string>();
-            var vertices = new string[] { "a", "z", "s" };
+            var vertices = new[] { "a", "z", "s" };
             graph.AddVertices(vertices);
 
             Assert.True(graph.VerticesCount == 3);
@@ -41,12 +43,12 @@ namespace UnitTest.DataStructuresTests
             Assert.Equal("a", edgeToZ.Source);
             Assert.Equal(2, edgeToZ.Weight);
 
-            var expectedOutgoingFromA = new List<string>() { "z", "s" };
+            var expectedOutgoingFromA = new List<string> { "z", "s" };
             Assert.True(graph.OutgoingEdges("a").Select(e => e.Destination).SequenceEqual(expectedOutgoingFromA));
             Assert.Single(graph.OutgoingEdges("s"));
             Assert.Single(graph.OutgoingEdges("z"));
 
-            var expectedIncomming = new List<string>() { "a" };
+            var expectedIncomming = new List<string> { "a" };
             Assert.True(graph.IncomingEdges("s").Select(e => e.Source).SequenceEqual(expectedIncomming));
             Assert.True(graph.IncomingEdges("z").Select(e => e.Source).SequenceEqual(expectedIncomming));
             Assert.Equal(2, graph.IncomingEdges("a").Count());
@@ -56,7 +58,7 @@ namespace UnitTest.DataStructuresTests
         public void GetEdge_ShouldThrowException_WhenSearchVertexNotFound()
         {
             var graph = new UndirectedWeightedDenseGraph<string>();
-            var vertices = new string[] { "a", "z", "s" };
+            var vertices = new[] { "a", "z", "s" };
             graph.AddVertices(vertices);
 
             graph.AddEdge("a", "s", 1);
@@ -69,7 +71,7 @@ namespace UnitTest.DataStructuresTests
         public void GetEdge_ShouldReturnNull_WhenEdgeNotFound()
         {
             var graph = new UndirectedWeightedDenseGraph<string>();
-            var vertices = new string[] { "a", "z", "s", "b" };
+            var vertices = new[] { "a", "z", "s", "b" };
             graph.AddVertices(vertices);
 
             graph.AddEdge("a", "s", 1);
@@ -82,7 +84,7 @@ namespace UnitTest.DataStructuresTests
         public void RemoveEdge_ShouldRemoveEdge_AndSetProperties()
         {
             var graph = new UndirectedWeightedDenseGraph<string>();
-            var vertices = new string[] { "a", "z", "s" };
+            var vertices = new[] { "a", "z", "s" };
             graph.AddVertices(vertices);
 
             graph.AddEdge("a", "s", 1);
@@ -91,7 +93,7 @@ namespace UnitTest.DataStructuresTests
             Assert.True(graph.Edges.Count() == 2);
             Assert.True(graph.EdgesCount == 2);
 
-            var expectedOutgoingFromA = new List<string>() { "z", "s" };
+            var expectedOutgoingFromA = new List<string> { "z", "s" };
             Assert.True(graph.OutgoingEdges("a").Select(e => e.Destination).SequenceEqual(expectedOutgoingFromA));
             Assert.True(graph.IncomingEdges("z").Any());
 
@@ -101,7 +103,7 @@ namespace UnitTest.DataStructuresTests
             Assert.True(graph.Edges.Count() == 1);
             Assert.True(graph.EdgesCount == 1);
 
-            expectedOutgoingFromA = new List<string>() { "s" };
+            expectedOutgoingFromA = new List<string> { "s" };
             Assert.True(graph.OutgoingEdges("a").Select(e => e.Destination).SequenceEqual(expectedOutgoingFromA));
             Assert.False(graph.IncomingEdges("z").Any());
         }
@@ -110,7 +112,7 @@ namespace UnitTest.DataStructuresTests
         public void RemoveEdge_ShouldThrowException_WhenVertexNotExists()
         {
             var graph = new UndirectedWeightedDenseGraph<string>();
-            var vertices = new string[] { "a", "z", "s" };
+            var vertices = new[] { "a", "z", "s" };
             graph.AddVertices(vertices);
 
             graph.AddEdge("a", "s", 1);
@@ -124,7 +126,7 @@ namespace UnitTest.DataStructuresTests
         public void RemoveEdge_ShoudlReturnFalse_WhenEdgeNotExists()
         {
             var graph = new UndirectedWeightedDenseGraph<string>();
-            var vertices = new string[] { "a", "z", "s" };
+            var vertices = new[] { "a", "z", "s" };
             graph.AddVertices(vertices);
 
             graph.AddEdge("a", "s", 1);
@@ -136,7 +138,7 @@ namespace UnitTest.DataStructuresTests
         public void OutgoingEdges_ShouldThrowException_WhenVertexIsNotExists()
         {
             var graph = new UndirectedWeightedDenseGraph<string>();
-            var vertices = new string[] { "a", "z", "s" };
+            var vertices = new[] { "a", "z", "s" };
             graph.AddVertices(vertices);
 
             graph.AddEdge("a", "s", 1);
@@ -149,7 +151,7 @@ namespace UnitTest.DataStructuresTests
         public void IncommingEdges_ShouldThrowException_WhenVertexNotExists()
         {
             var graph = new UndirectedWeightedDenseGraph<string>();
-            var vertices = new string[] { "a", "z", "s" };
+            var vertices = new[] { "a", "z", "s" };
             graph.AddVertices(vertices);
 
             graph.AddEdge("a", "s", 1);
@@ -162,7 +164,7 @@ namespace UnitTest.DataStructuresTests
         public void UpdateEdgeWeight_ShouldUpdateWeight_OfCSpecificEdge()
         {
             var graph = new UndirectedWeightedDenseGraph<string>();
-            var vertices = new string[] { "a", "z", "s" };
+            var vertices = new[] { "a", "z", "s" };
             graph.AddVertices(vertices);
 
             graph.AddEdge("a", "s", 1);
@@ -177,7 +179,7 @@ namespace UnitTest.DataStructuresTests
         public void UpdateEdgeWeight_ShouldThrowException_WhenVertexNotFound()
         {
             var graph = new UndirectedWeightedDenseGraph<string>();
-            var vertices = new string[] { "a", "z", "s" };
+            var vertices = new[] { "a", "z", "s" };
             graph.AddVertices(vertices);
 
             graph.AddEdge("a", "s", 1);
@@ -191,7 +193,7 @@ namespace UnitTest.DataStructuresTests
         public void UpdateEdgeWeight_ShouldReturnFalse_WhenEdgeNotFound()
         {
             var graph = new UndirectedWeightedDenseGraph<string>();
-            var vertices = new string[] { "a", "z", "s" };
+            var vertices = new[] { "a", "z", "s" };
             graph.AddVertices(vertices);
 
             graph.AddEdge("a", "s", 1);

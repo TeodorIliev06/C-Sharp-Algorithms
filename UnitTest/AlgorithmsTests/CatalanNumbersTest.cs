@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Numerics;
-using Algorithms.Numeric;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System.Numerics;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using Algorithms.Numeric;
+
     public class CatalanNumbersTest
     {
         [Fact]

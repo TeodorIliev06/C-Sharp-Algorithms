@@ -1,8 +1,9 @@
-﻿using Algorithms.Numeric;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using Xunit;
+
+    using Algorithms.Numeric;
+
     public class GreatestCommonDivisorTests
     {
         [Fact]

@@ -1,19 +1,19 @@
-﻿using System;
-using System.Diagnostics;
-
-using DataStructures.Graphs;
-using Algorithms.Graphs;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
-	public static class GraphsDepthFirstSearchTest
+    using System;
+    using System.Diagnostics;
+
+    using Algorithms.Graphs;
+    using DataStructures.Graphs;
+
+    public static class GraphsDepthFirstSearchTest
 	{
 		public static void DoTest ()
 		{
 			IGraph<string> graph = new UndirectedSparseGraph<string>();
 
 			// Add vertices
-			var verticesSet1 = new string[] { "a", "z", "s", "x", "d", "c", "f", "v" };
+			var verticesSet1 = new[] { "a", "z", "s", "x", "d", "c", "f", "v" };
 			graph.AddVertices (verticesSet1);
 
 			// Add edges
@@ -35,8 +35,8 @@ namespace UnitTest.AlgorithmsTests
 
 			string searchResult = null;
 			string startFromNode = "d";
-			Action<string> writeToConsole = (node) => Console.Write (String.Format ("({0}) ", node));
-			Predicate<string> searchPredicate = (node) => node == "f" || node == "c";
+			Action<string> writeToConsole = node => Console.Write (String.Format ("({0}) ", node));
+			Predicate<string> searchPredicate = node => node == "f" || node == "c";
 
 			Console.WriteLine ("[*] DFS Visit All Nodes:");
 			Console.WriteLine ("Graph traversal started at node: '" + startFromNode + "'");
@@ -52,11 +52,7 @@ namespace UnitTest.AlgorithmsTests
 				Debug.Assert(searchResult == "c" || searchResult == "f");
 
 				Console.WriteLine("[*] DFS Find First Match:");
-				Console.WriteLine(
-					String.Format(
-						"Search result: '{0}'. The search started from node: '{1}'."
-						, searchResult
-						, startFromNode));
+				Console.WriteLine("Search result: '{0}'. The search started from node: '{1}'.", searchResult, startFromNode);
 			}
 			catch(Exception) 
 			{

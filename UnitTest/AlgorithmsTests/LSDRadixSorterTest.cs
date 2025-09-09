@@ -1,9 +1,11 @@
-﻿using Algorithms.Sorting;
-using System.Collections.Generic;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using Algorithms.Sorting;
+
     public static class LSDRadixSorterTest
     {
         [Fact]
@@ -30,8 +32,8 @@ namespace UnitTest.AlgorithmsTests
 
             //
             // Sort a list of strings of the same length
-            var toBeSorted = new List<string>() { "ahmad", "ahmed", "johny", "ammy1", "ammy2", "zeyad", "aliaa", "aaaaa", "mmmmm", "zzzzz" };
-            var alreadySorted = new List<string>() { "aaaaa", "ahmad", "ahmed", "aliaa", "ammy1", "ammy2", "johny", "mmmmm", "zeyad", "zzzzz" };
+            var toBeSorted = new List<string> { "ahmad", "ahmed", "johny", "ammy1", "ammy2", "zeyad", "aliaa", "aaaaa", "mmmmm", "zzzzz" };
+            var alreadySorted = new List<string> { "aaaaa", "ahmad", "ahmed", "aliaa", "ammy1", "ammy2", "johny", "mmmmm", "zeyad", "zzzzz" };
 
             toBeSorted.LSDRadixSort(stringFixedWidth: 5);
 

@@ -1,8 +1,9 @@
-﻿using DataStructures.Heaps;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using Xunit;
+
+    using DataStructures.Heaps;
+
     public static class BinomialHeapsTest
     {
         [Fact]

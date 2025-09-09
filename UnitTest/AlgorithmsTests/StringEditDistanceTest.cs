@@ -1,8 +1,9 @@
-﻿using Algorithms.Strings;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using Xunit;
+
+    using Algorithms.Strings;
+
     public static class StringEditDistanceTest
     {
         [Fact]

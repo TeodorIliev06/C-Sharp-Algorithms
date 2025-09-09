@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-using DataStructures.Trees;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using DataStructures.Trees;
+
     public static class AVLTreeTest
     {
         [Fact]
@@ -139,7 +141,7 @@ namespace UnitTest.DataStructuresTests
             avlTree = new AVLTree<int>();
             var bsTree = new BinarySearchTree<int>();
 
-            List<int> treeDataList = new List<int>() { 15, 25, 5, 12, 1, 16, 20, 9, 9, 7, 7, -1, 11, 19, 30, 8, 10, 13, 28, 39 };
+            List<int> treeDataList = new List<int> { 15, 25, 5, 12, 1, 16, 20, 9, 9, 7, 7, -1, 11, 19, 30, 8, 10, 13, 28, 39 };
             avlTree.Insert(treeDataList);
             bsTree.Insert(treeDataList);
 
@@ -148,7 +150,7 @@ namespace UnitTest.DataStructuresTests
 
             Assert.True(avlTreeHeight < bsTreeHeight, "Wrong heights. AVL Tree must be shorted than BS Tree.");
 
-            treeDataList = new List<int>() { 15, 25, 5, 12, 1, 9, 7, -1, 11, 30, 8, 10, 13, 28, 39 };
+            treeDataList = new List<int> { 15, 25, 5, 12, 1, 9, 7, -1, 11, 30, 8, 10, 13, 28, 39 };
             avlTree.Clear();
             avlTree.Insert(treeDataList);
 

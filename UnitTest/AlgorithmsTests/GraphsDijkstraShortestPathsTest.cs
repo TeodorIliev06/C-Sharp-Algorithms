@@ -1,11 +1,13 @@
-﻿using Algorithms.Graphs;
-using DataStructures.Graphs;
-using System;
-using System.Linq;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System;
+    using System.Linq;
+
+    using Xunit;
+
+    using Algorithms.Graphs;
+    using DataStructures.Graphs;
+
     public class GraphsDijkstraShortestPathsTest
     {
         [Fact]

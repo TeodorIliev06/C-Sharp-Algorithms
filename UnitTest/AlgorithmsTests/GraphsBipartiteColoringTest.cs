@@ -1,9 +1,10 @@
-﻿using Algorithms.Graphs;
-using DataStructures.Graphs;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using Xunit;
+
+    using Algorithms.Graphs;
+    using DataStructures.Graphs;
+
     public static class GraphsBipartiteColoringTest
     {
         [Fact]

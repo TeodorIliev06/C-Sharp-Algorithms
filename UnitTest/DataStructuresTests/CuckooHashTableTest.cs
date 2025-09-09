@@ -1,8 +1,9 @@
-﻿using DataStructures.Dictionaries;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using Xunit;
+
+    using DataStructures.Dictionaries;
+
     public static class CuckooHashTableTest
     {
         [Fact]

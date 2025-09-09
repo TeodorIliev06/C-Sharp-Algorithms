@@ -1,10 +1,12 @@
-﻿using DataStructures.Graphs;
-using System;
-using System.Linq;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+    using System.Linq;
+
+    using Xunit;
+
+    using DataStructures.Graphs;
+
     public static class GraphsUndirectedWeightedSparseGraphTest
     {
         [Fact]

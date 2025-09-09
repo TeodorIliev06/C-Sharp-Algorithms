@@ -1,8 +1,10 @@
-﻿using System;
-using DataStructures.Graphs;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+    using System.Diagnostics;
+
+    using DataStructures.Graphs;
+
     public static class CliqueGraphTest
     {
         public const int vertexPerCluster = 10;
@@ -24,7 +26,7 @@ namespace UnitTest.DataStructuresTests
             for (int i = 0; i < numClusters; i++)
             {
                 MakeCluster(gra, i);
-                System.Diagnostics.Debug.WriteLine(string.Format("Cluster {0} finished.", i));
+                Debug.WriteLine("Cluster {0} finished.", i);
             }
 
             for (int i = 0; i < numClusters; i++)
@@ -35,7 +37,7 @@ namespace UnitTest.DataStructuresTests
                 }
             }
 
-            System.Diagnostics.Debug.WriteLine(string.Format("Graph connected"));
+            Debug.WriteLine("Graph connected");
         }
 
         static void MakeCluster(IGraph<ComparableTuple> gra, int i)
@@ -67,7 +69,7 @@ namespace UnitTest.DataStructuresTests
             {
                 foreach (var y in dualGraph.Neighbours(x))
                 {
-                    System.Diagnostics.Debug.WriteLine(string.Format("{0}-{1}", x, y));
+                    Debug.WriteLine("{0}-{1}", x, y);
                 }
             }
 
@@ -79,7 +81,7 @@ namespace UnitTest.DataStructuresTests
 
             foreach (var edge in testGraph.OutgoingEdges(new ComparableTuple(0, 0)))
             {
-                System.Diagnostics.Debug.WriteLine(string.Format("{0} -> {1}\t", edge.Source, edge.Destination));
+                Debug.WriteLine("{0} -> {1}\t", edge.Source, edge.Destination);
             }
 
 

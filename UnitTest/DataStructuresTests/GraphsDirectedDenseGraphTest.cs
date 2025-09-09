@@ -1,9 +1,11 @@
-﻿using DataStructures.Graphs;
-using System.Linq;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System.Linq;
+
+    using Xunit;
+
+    using DataStructures.Graphs;
+
     public static class GraphsDirectedDenseGraphTest
     {
         [Fact]
@@ -11,7 +13,7 @@ namespace UnitTest.DataStructuresTests
         {
             var graph = new DirectedDenseGraph<string>();
 
-            var verticesSet1 = new string[] { "a", "z", "s", "x", "d", "c", "f", "v" };
+            var verticesSet1 = new[] { "a", "z", "s", "x", "d", "c", "f", "v" };
 
             graph.AddVertices(verticesSet1);
 
@@ -75,25 +77,25 @@ namespace UnitTest.DataStructuresTests
 
             // BFS from A
             // Walk the graph using BFS from A:
-            Assert.True(graph.BreadthFirstWalk("a").SequenceEqual(new string[] { "a", "z", "s", "x", "d", "c", "f", "v" }));
+            Assert.True(graph.BreadthFirstWalk("a").SequenceEqual(new[] { "a", "z", "s", "x", "d", "c", "f", "v" }));
 
             // DFS from A
             // Walk the graph using DFS from A:
-            Assert.True(graph.DepthFirstWalk("a").SequenceEqual(new string[] { "a", "s", "x", "c", "v", "f", "d", "z" }));
+            Assert.True(graph.DepthFirstWalk("a").SequenceEqual(new[] { "a", "s", "x", "c", "v", "f", "d", "z" }));
 
             // BFS from F
             // Walk the graph using BFS from F:
-            Assert.True(graph.BreadthFirstWalk("f").SequenceEqual(new string[] { "f", "c", "d", "v", "s", "x", "a", "z" }));
+            Assert.True(graph.BreadthFirstWalk("f").SequenceEqual(new[] { "f", "c", "d", "v", "s", "x", "a", "z" }));
 
 
             // DFS from F
             // Walk the graph using DFS from F:
-            Assert.True(graph.DepthFirstWalk("f").SequenceEqual(new string[] { "f", "c", "v", "d", "s", "x", "a", "z" }));
+            Assert.True(graph.DepthFirstWalk("f").SequenceEqual(new[] { "f", "c", "v", "d", "s", "x", "a", "z" }));
 
             graph.Clear();
             // Cleared the graph from all vertices and edges
 
-            var verticesSet2 = new string[] { "a", "b", "c", "d", "e", "f" };
+            var verticesSet2 = new[] { "a", "b", "c", "d", "e", "f" };
 
             graph.AddVertices(verticesSet2);
 
@@ -110,7 +112,7 @@ namespace UnitTest.DataStructuresTests
             Assert.True(graph.EdgesCount == 8, "Wrong edges count.");
 
             // Walk the graph using DFS:
-            Assert.True(graph.DepthFirstWalk().SequenceEqual(new string[] { "a", "d", "e", "c", "f", "b" }));
+            Assert.True(graph.DepthFirstWalk().SequenceEqual(new[] { "a", "d", "e", "c", "f", "b" }));
 
         }
 

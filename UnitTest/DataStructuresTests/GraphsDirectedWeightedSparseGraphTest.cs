@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Diagnostics;
-
-using DataStructures.Graphs;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+    using System.Linq;
+
+    using Xunit;
+
+    using DataStructures.Graphs;
+
     public static class GraphsDirectedWeightedSparseGraphTest
     {
         [Fact]
@@ -14,7 +14,7 @@ namespace UnitTest.DataStructuresTests
         {
             var graph = new DirectedWeightedSparseGraph<string>();
 
-            var verticesSet1 = new string[] { "a", "z", "s", "x", "d", "c", "f", "v" };
+            var verticesSet1 = new[] { "a", "z", "s", "x", "d", "c", "f", "v" };
 
             graph.AddVertices(verticesSet1);
 
@@ -60,13 +60,13 @@ namespace UnitTest.DataStructuresTests
             // ASSERT RANDOMLY SELECTED EDGES
             var f_to_c = graph.HasEdge("f", "c");
             var f_to_c_weight = graph.GetEdgeWeight("f", "c");
-            Assert.True(f_to_c == true, "Edge f->c doesn't exist.");
+            Assert.True(f_to_c, "Edge f->c doesn't exist.");
             Assert.True(f_to_c_weight == 2, "Edge f->c must have a weight of 2.");
 
             // ASSERT RANDOMLY SELECTED EDGES
             var d_to_s = graph.HasEdge("d", "s");
             var d_to_s_weight = graph.GetEdgeWeight("d", "s");
-            Assert.True(d_to_s == true, "Edge d->s doesn't exist.");
+            Assert.True(d_to_s, "Edge d->s doesn't exist.");
             Assert.True(d_to_s_weight == 3, "Edge d->s must have a weight of 3.");
 
             // TRY ADDING DUPLICATE EDGES BUT WITH DIFFERENT WEIGHTS
@@ -116,28 +116,28 @@ namespace UnitTest.DataStructuresTests
             // BFS from A
             // Walk the graph using BFS from A:
             var bfsWalk = graph.BreadthFirstWalk("a");		// output: (s) (a) (x) (z) (d) (c) (f) (v)
-            foreach (var node in bfsWalk) Console.Write(String.Format("({0})", node));
+            foreach (var node in bfsWalk) Console.Write("({0})", node);
 
             // DFS from A
             // Walk the graph using DFS from A:
             var dfsWalk = graph.DepthFirstWalk("a");		// output: (s) (a) (x) (z) (d) (c) (f) (v)
-            foreach (var node in dfsWalk) Console.Write(String.Format("({0})", node));
+            foreach (var node in dfsWalk) Console.Write("({0})", node);
 
             // BFS from F
             // Walk the graph using BFS from F:
             bfsWalk = graph.BreadthFirstWalk("f");		// output: (s) (a) (x) (z) (d) (c) (f) (v)
-            foreach (var node in bfsWalk) Console.Write(String.Format("({0})", node));
+            foreach (var node in bfsWalk) Console.Write("({0})", node);
 
             // DFS from F
             Console.WriteLine("Walk the graph using DFS from F:");
             dfsWalk = graph.DepthFirstWalk("f");		// output: (s) (a) (x) (z) (d) (c) (f) (v)
-            foreach (var node in dfsWalk) Console.Write(String.Format("({0})", node));
+            foreach (var node in dfsWalk) Console.Write("({0})", node);
 
             /********************************************************************/
 
             graph.Clear();
 
-            var verticesSet2 = new string[] { "a", "b", "c", "d", "e", "f" };
+            var verticesSet2 = new[] { "a", "b", "c", "d", "e", "f" };
             graph.AddVertices(verticesSet2);
 
             graph.AddEdge("a", "b", 1);
@@ -154,7 +154,7 @@ namespace UnitTest.DataStructuresTests
 
             // Walk the graph using DFS:
             dfsWalk = graph.DepthFirstWalk();		// output: (a) (b) (e) (d) (c) (f) 
-            foreach (var node in dfsWalk) Console.Write(String.Format("({0})", node));
+            foreach (var node in dfsWalk) Console.Write("({0})", node);
 
         }
 

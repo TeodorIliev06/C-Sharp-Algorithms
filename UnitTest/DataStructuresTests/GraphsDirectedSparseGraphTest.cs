@@ -1,10 +1,12 @@
-﻿using DataStructures.Graphs;
-using System;
-using System.Linq;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+    using System.Linq;
+
+    using Xunit;
+
+    using DataStructures.Graphs;
+
     public static class GraphsDirectedSparseGraphTest
     {
         [Fact]
@@ -12,7 +14,7 @@ namespace UnitTest.DataStructuresTests
         {
             var graph = new DirectedSparseGraph<string>();
 
-            var verticesSet1 = new string[] { "a", "z", "s", "x", "d", "c", "f", "v" };
+            var verticesSet1 = new[] { "a", "z", "s", "x", "d", "c", "f", "v" };
 
             graph.AddVertices(verticesSet1);
 
@@ -81,7 +83,7 @@ namespace UnitTest.DataStructuresTests
             // output: (s) (a) (x) (z) (d) (c) (f) (v)
             foreach (var node in bfsWalk)
             {
-                Console.Write(String.Format("({0})", node));
+                Console.Write("({0})", node);
             }
 
             // DFS from A
@@ -90,7 +92,7 @@ namespace UnitTest.DataStructuresTests
             // output: (s) (a) (x) (z) (d) (c) (f) (v)
             foreach (var node in dfsWalk)
             {
-                Console.Write(String.Format("({0})", node));
+                Console.Write("({0})", node);
             }
 
             // BFS from F
@@ -99,7 +101,7 @@ namespace UnitTest.DataStructuresTests
             // output: (s) (a) (x) (z) (d) (c) (f) (v)
             foreach (var node in bfsWalk)
             {
-                Console.Write(String.Format("({0})", node));
+                Console.Write("({0})", node);
             }
 
             // DFS from F
@@ -108,7 +110,7 @@ namespace UnitTest.DataStructuresTests
             // output: (s) (a) (x) (z) (d) (c) (f) (v)
             foreach (var node in dfsWalk)
             {
-                Console.Write(String.Format("({0})", node));
+                Console.Write("({0})", node);
             }
 
             /********************************************************************/
@@ -117,7 +119,7 @@ namespace UnitTest.DataStructuresTests
             graph.Clear();
             // Cleared the graph from all vertices and edges
 
-            var verticesSet2 = new string[] { "a", "b", "c", "d", "e", "f" };
+            var verticesSet2 = new[] { "a", "b", "c", "d", "e", "f" };
 
             graph.AddVertices(verticesSet2);
 
@@ -138,7 +140,7 @@ namespace UnitTest.DataStructuresTests
             // output: (a) (b) (e) (d) (c) (f) 
             foreach (var node in dfsWalk)
             {
-                Console.Write(String.Format("({0})", node));
+                Console.Write("({0})", node);
             }
         }
 

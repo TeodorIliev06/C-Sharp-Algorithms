@@ -1,12 +1,14 @@
-﻿using Algorithms.Trees;
-using DataStructures.Trees;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using Algorithms.Trees;
+    using DataStructures.Trees;
+
     public static class BinaryTreeRecursiveWalkerTests
     {
         // Construct a Simple Binary Search Tree

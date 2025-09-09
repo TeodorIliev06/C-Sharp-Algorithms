@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using Xunit;
+
     public static class SortedDictionaryTests
     {
         [Fact]
@@ -113,7 +115,7 @@ namespace UnitTest.DataStructuresTests
                 int val1 = array[i].Value;
                 int val2 = keyValuePairsList[i].Value;
 
-                Assert.True(key1.Equals(key2, System.StringComparison.Ordinal), "Unmatched order of items!");
+                Assert.True(key1.Equals(key2, StringComparison.Ordinal), "Unmatched order of items!");
                 Assert.Equal(val1, val2);
             }
 

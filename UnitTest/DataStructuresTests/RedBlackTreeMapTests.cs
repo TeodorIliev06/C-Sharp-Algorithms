@@ -1,10 +1,12 @@
-﻿using DataStructures.Trees;
-using System;
-using System.Collections.Generic;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using DataStructures.Trees;
+
     public static class RedBlackTreeMapTests
     {
         [Fact]

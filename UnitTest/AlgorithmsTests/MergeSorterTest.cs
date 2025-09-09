@@ -1,10 +1,12 @@
-﻿using Algorithms.Sorting;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using Algorithms.Sorting;
+
     public static class MergeSorterTest
     {
         [Fact]

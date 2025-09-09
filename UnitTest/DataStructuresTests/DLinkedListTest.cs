@@ -1,9 +1,11 @@
-﻿using DataStructures.Lists;
-using System;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+
+    using Xunit;
+
+    using DataStructures.Lists;
+
     public static class DLinkedListTest
     {
         [Fact]
@@ -68,7 +70,7 @@ namespace UnitTest.DataStructuresTests
             var stringsIterators = listOfStrings.GetEnumerator();
             stringsIterators.MoveNext();
             Assert.True(stringsIterators.Current == listOfStrings[0], "Wrong enumeration.");
-            if (stringsIterators.MoveNext() == true)
+            if (stringsIterators.MoveNext())
             {
                 Assert.True(stringsIterators.Current == listOfStrings[1], "Wrong enumeration.");
             }

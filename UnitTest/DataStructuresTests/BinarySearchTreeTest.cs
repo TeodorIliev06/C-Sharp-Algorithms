@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DataStructures.Trees;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using DataStructures.Trees;
+
     public static class BinarySearchTreeTest
     {
         /// <summary>

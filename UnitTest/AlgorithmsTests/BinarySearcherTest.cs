@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
-using Xunit;
-using Algorithms.Search;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using Algorithms.Search;
+
     public static class BinarySearcherTest
     {
         [Fact]
@@ -75,7 +78,7 @@ namespace UnitTest.AlgorithmsTests
         public static void NullCollectionExceptionTest()
         {
             IList<int> list = null;
-            Assert.Throws<System.NullReferenceException>(() => new BinarySearcher<int>(list, Comparer<int>.Default));
+            Assert.Throws<NullReferenceException>(() => new BinarySearcher<int>(list, Comparer<int>.Default));
         }
     }
 }

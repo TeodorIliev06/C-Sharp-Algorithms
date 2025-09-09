@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
-using Algorithms.Sorting;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using Algorithms.Sorting;
+
     public static class HeapSorterTest
     {
         [Fact]
         public static void DoTest()
         {
-            int[] numbersList1 = new int[] { 23, 42, 4, 16, 8, 15, 3, 9, 55, 0, 34, 12, 2, 46, 25 };
+            int[] numbersList1 = { 23, 42, 4, 16, 8, 15, 3, 9, 55, 0, 34, 12, 2, 46, 25 };
             List<long> numbersList2 = new List<long> { 23, 42, 4, 16, 8, 15, 3, 9, 55, 0, 34, 12, 2, 46, 25 };
 
             numbersList1.HeapSort();

@@ -1,8 +1,9 @@
-﻿using DataStructures.Lists;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using Xunit;
+
+    using DataStructures.Lists;
+
     public static class ArrayListTest
     {
         [Fact]

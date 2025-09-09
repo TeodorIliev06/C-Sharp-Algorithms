@@ -1,11 +1,13 @@
-﻿using DataStructures.Trees;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using DataStructures.Trees;
+
     public class RedBlackTreeTest
     {
         /** Input tree for test cases, (r -> red, b -> black):
@@ -17,7 +19,7 @@ namespace UnitTest.DataStructuresTests
         **         / \
         **     (r)5   8(r)
         **/
-        private RedBlackTree<int> redBlackTree;
+        private readonly RedBlackTree<int> redBlackTree;
 
         public RedBlackTreeTest()
         {
@@ -482,7 +484,7 @@ namespace UnitTest.DataStructuresTests
             var paths = new List<List<RedBlackTreeNode<T>>>();
             foreach (var leaf in leaves)
             {
-                paths.Add(new List<RedBlackTreeNode<T>>() { leaf });
+                paths.Add(new List<RedBlackTreeNode<T>> { leaf });
             }
 
             for (var index = 0; index < paths.Count; index++)

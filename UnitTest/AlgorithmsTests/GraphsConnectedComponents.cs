@@ -1,10 +1,11 @@
-﻿using Algorithms.Graphs;
-using DataStructures.Graphs;
-using System.Diagnostics;
-using System.Linq;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System.Linq;
+    using System.Diagnostics;
+
+    using Algorithms.Graphs;
+    using DataStructures.Graphs;
+
     public static class GraphsConnectedComponents
     {
         public static void DoTest()
@@ -12,7 +13,7 @@ namespace UnitTest.AlgorithmsTests
             var graph = new UndirectedSparseGraph<string>();
 
             // Add vertices
-            var verticesSet1 = new string[] { "a", "b", "c", "d", "e", "f", "s", "v", "x", "y", "z" };
+            var verticesSet1 = new[] { "a", "b", "c", "d", "e", "f", "s", "v", "x", "y", "z" };
             graph.AddVertices (verticesSet1);
 
             // Add edges
@@ -37,7 +38,7 @@ namespace UnitTest.AlgorithmsTests
 
 
             // Get connected components
-            var connectedComponents = ConnectedComponents.Compute<string>(graph);
+            var connectedComponents = ConnectedComponents.Compute(graph);
             connectedComponents = connectedComponents.OrderBy(item => item.Count).ToList();
 
             Debug.Assert(connectedComponents.Count == 4);

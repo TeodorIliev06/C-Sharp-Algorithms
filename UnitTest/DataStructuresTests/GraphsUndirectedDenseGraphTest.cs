@@ -1,9 +1,11 @@
-﻿using DataStructures.Graphs;
-using System.Linq;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System.Linq;
+
+    using Xunit;
+
+    using DataStructures.Graphs;
+
     public static class GraphsUndirectedDenseGraphTests
     {
 
@@ -12,7 +14,7 @@ namespace UnitTest.DataStructuresTests
         {
             var graph = new UndirectedDenseGraph<string>();
 
-            graph.AddVertices(new string[] { "a", "z", "s", "x", "d", "c", "f", "v" });
+            graph.AddVertices(new[] { "a", "z", "s", "x", "d", "c", "f", "v" });
 
             graph.AddEdge("a", "s");
             graph.AddEdge("a", "z");
@@ -67,8 +69,8 @@ namespace UnitTest.DataStructuresTests
 
             Assert.True(graph.VerticesCount == 8, "Wrong vertices count.");
             Assert.True(graph.EdgesCount == 10, "Wrong edges count.");
-            Assert.True(graph.HasVertex("v") == true, "Vertex v does not exist.");
-            Assert.True(graph.HasVertex("f") == true, "Vertex f does not exist.");
+            Assert.True(graph.HasVertex("v"), "Vertex v does not exist.");
+            Assert.True(graph.HasVertex("f"), "Vertex f does not exist.");
 
             // RE-TEST REMOVE AND ADD NODES AND EDGES
             graph.RemoveEdge("d", "c");
@@ -90,11 +92,11 @@ namespace UnitTest.DataStructuresTests
             graph.AddEdge("a", "z");
 
             // output: (s) (a) (x) (z) (d) (c) (f) (v)
-            Assert.True(graph.BreadthFirstWalk("s").SequenceEqual(new string[] { "s", "a", "x", "z", "d", "c", "f", "v" }));
+            Assert.True(graph.BreadthFirstWalk("s").SequenceEqual(new[] { "s", "a", "x", "z", "d", "c", "f", "v" }));
 
             graph.Clear();
 
-            graph.AddVertices(new string[] { "a", "b", "c", "d", "e", "f" });
+            graph.AddVertices(new[] { "a", "b", "c", "d", "e", "f" });
             graph.AddEdge("a", "b");
             graph.AddEdge("a", "d");
             graph.AddEdge("b", "e");
@@ -106,7 +108,7 @@ namespace UnitTest.DataStructuresTests
 
             Assert.True(graph.VerticesCount == 6, "Wrong vertices count.");
             Assert.True(graph.EdgesCount == 8, "Wrong edges count.");
-            Assert.True(graph.DepthFirstWalk().SequenceEqual(new string[] { "a", "d", "e", "c", "f", "b" }));
+            Assert.True(graph.DepthFirstWalk().SequenceEqual(new[] { "a", "d", "e", "c", "f", "b" }));
 
         }
 

@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DataStructures.Dictionaries;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using DataStructures.Dictionaries;
+
     public static class HashTableSeparateChainingTest
     {
         [Fact]

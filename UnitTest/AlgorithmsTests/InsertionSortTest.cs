@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
-using DataStructures.Lists;
-using Algorithms.Sorting;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using Algorithms.Sorting;
+    using DataStructures.Lists;
+
     public static class InsertionSortTest
     {
         [Fact]

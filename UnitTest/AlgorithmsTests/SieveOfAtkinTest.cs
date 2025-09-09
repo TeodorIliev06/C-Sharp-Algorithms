@@ -1,9 +1,11 @@
-using System.Linq;
-using Algorithms.Numeric;
-using Xunit;
-
 namespace UnitTest.AlgorithmsTests
 {
+    using System.Linq;
+
+    using Xunit;
+
+    using Algorithms.Numeric;
+
     public class SieveOfAtkinTest
     {
         [Theory]

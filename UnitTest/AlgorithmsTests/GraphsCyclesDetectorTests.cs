@@ -1,9 +1,10 @@
-﻿using Algorithms.Graphs;
-using DataStructures.Graphs;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using Xunit;
+
+    using Algorithms.Graphs;
+    using DataStructures.Graphs;
+
     public static class GraphsCyclesDetectorTests
     {
         [Fact]
@@ -32,12 +33,12 @@ namespace UnitTest.AlgorithmsTests
             digraphWithCycles.AddEdge("z", "r");
             digraphWithCycles.AddEdge("z", "s");
 
-            var isCyclic = CyclesDetector.IsCyclic<string>(digraphWithCycles);
-            Assert.True(isCyclic == true, "Wrong status! The graph has cycles.");
+            var isCyclic = CyclesDetector.IsCyclic(digraphWithCycles);
+            Assert.True(isCyclic, "Wrong status! The graph has cycles.");
 
             var cyclicGraph = new UndirectedSparseGraph<string>();
 
-            v = new string[] { "A", "B", "C", "D", "E" };
+            v = new[] { "A", "B", "C", "D", "E" };
 
             // Insert new values of V
             cyclicGraph.AddVertices(v);
@@ -51,12 +52,12 @@ namespace UnitTest.AlgorithmsTests
             cyclicGraph.AddEdge("D", "B");
             cyclicGraph.AddEdge("E", "D");
 
-            isCyclic = CyclesDetector.IsCyclic<string>(cyclicGraph);
-            Assert.True(isCyclic == true, "Wrong status! The graph has cycles.");
+            isCyclic = CyclesDetector.IsCyclic(cyclicGraph);
+            Assert.True(isCyclic, "Wrong status! The graph has cycles.");
 
             var dag = new DirectedSparseGraph<string>();
 
-            v = new string[] { "A", "B", "C", "D", "E", "X" };
+            v = new[] { "A", "B", "C", "D", "E", "X" };
 
             // Insert new values of V
             dag.AddVertices(v);
@@ -69,7 +70,7 @@ namespace UnitTest.AlgorithmsTests
             dag.AddEdge("D", "E");
             dag.AddEdge("E", "X");
 
-            isCyclic = CyclesDetector.IsCyclic<string>(dag);
+            isCyclic = CyclesDetector.IsCyclic(dag);
             Assert.True(isCyclic == false, "Wrong status! The graph has no cycles.");
         }
 

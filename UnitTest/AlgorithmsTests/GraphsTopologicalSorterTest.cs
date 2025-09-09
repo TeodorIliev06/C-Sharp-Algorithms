@@ -1,20 +1,18 @@
-﻿using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-
-using Algorithms.Graphs;
-using DataStructures.Graphs;
-using DataStructures.Lists;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System;
+
+    using Xunit;
+
+    using Algorithms.Graphs;
+    using DataStructures.Graphs;
+
     public static class GraphsTopologicalSorterTest
     {
         [Fact]
         public static void DoTest()
         {
-            var V01 = new string[] { "A", "B", "C", "D", "E", "X" };
+            var V01 = new[] { "A", "B", "C", "D", "E", "X" };
             var DAG01 = new DirectedSparseGraph<string>();
 
             // Insert new values of V
@@ -32,7 +30,7 @@ namespace UnitTest.AlgorithmsTests
             // [*] DAG (Directed Asyclic Graph):
 
             // CALCULATE THE TOPOLOGICAL SORT
-            var topologicalSort01 = TopologicalSorter.Sort<string>(DAG01);
+            var topologicalSort01 = TopologicalSorter.Sort(DAG01);
 
             var output01 = string.Empty;
             foreach (var node in topologicalSort01)
@@ -40,7 +38,7 @@ namespace UnitTest.AlgorithmsTests
                 output01 = String.Format("{0}({1}) ", output01, node);
             }
 
-            var V02 = new int[] { 7, 5, 3, 11, 8, 2, 9, 10 };
+            var V02 = new[] { 7, 5, 3, 11, 8, 2, 9, 10 };
             var DAG02 = new DirectedSparseGraph<int>();
 
             // Insert new values of V
@@ -60,7 +58,7 @@ namespace UnitTest.AlgorithmsTests
             // PRINT THE GRAPH
             // [*] DAG (Directed Asyclic Graph):
             // CALCULATE THE TOPOLOGICAL SORT
-            var topologicalSort02 = TopologicalSorter.Sort<int>(DAG02);
+            var topologicalSort02 = TopologicalSorter.Sort(DAG02);
 
             var output02 = string.Empty;
             foreach (var node in topologicalSort02)

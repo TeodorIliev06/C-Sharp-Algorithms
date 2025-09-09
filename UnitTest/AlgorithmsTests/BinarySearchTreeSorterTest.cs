@@ -1,10 +1,12 @@
-using Algorithms.Sorting;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
-
 namespace UnitTest.AlgorithmsTests
 {
+    using System.Linq;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using Algorithms.Sorting;
+
     public class BinarySearchTreeSorterTest
     {
         [Fact]

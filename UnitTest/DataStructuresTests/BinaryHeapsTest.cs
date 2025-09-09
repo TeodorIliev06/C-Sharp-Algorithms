@@ -1,10 +1,12 @@
-﻿using DataStructures.Heaps;
-using System;
-using System.Collections.Generic;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using DataStructures.Heaps;
+
     public static class MinHeapTest
     {
         [Fact]
@@ -23,7 +25,7 @@ namespace UnitTest.DataStructuresTests
             minHeap.Add(5);
             minHeap.Add(7);
 
-            var isRightOrder = IsRightOrderInHeap<long>(minHeap);
+            var isRightOrder = IsRightOrderInHeap(minHeap);
             Assert.True(isRightOrder);    
         }
 
@@ -43,7 +45,7 @@ namespace UnitTest.DataStructuresTests
             minHeap.Add(9);
             minHeap.Add(10);
 
-            var isRightOrder = IsRightOrderInHeap<long>(minHeap);
+            var isRightOrder = IsRightOrderInHeap(minHeap);
             Assert.True(isRightOrder);
         }
 
@@ -63,7 +65,7 @@ namespace UnitTest.DataStructuresTests
             minHeap.Add(2);
             minHeap.Add(1);
 
-            var isRightOrder = IsRightOrderInHeap<long>(minHeap);
+            var isRightOrder = IsRightOrderInHeap(minHeap);
             Assert.True(isRightOrder);
         }
 
@@ -109,7 +111,7 @@ namespace UnitTest.DataStructuresTests
             maxHeap.Add(5);
             maxHeap.Add(7);
 
-            var isRightOrder = IsRightOrderInHeap<long>(maxHeap);
+            var isRightOrder = IsRightOrderInHeap(maxHeap);
             Assert.True(isRightOrder);
         }
 
@@ -129,7 +131,7 @@ namespace UnitTest.DataStructuresTests
             maxHeap.Add(9);
             maxHeap.Add(10);
 
-            var isRightOrder = IsRightOrderInHeap<long>(maxHeap);
+            var isRightOrder = IsRightOrderInHeap(maxHeap);
             Assert.True(isRightOrder);
         }
 
@@ -149,7 +151,7 @@ namespace UnitTest.DataStructuresTests
             maxHeap.Add(2);
             maxHeap.Add(1);
 
-            var isRightOrder = IsRightOrderInHeap<long>(maxHeap);
+            var isRightOrder = IsRightOrderInHeap(maxHeap);
             Assert.True(isRightOrder);
         }
 

@@ -1,9 +1,11 @@
-﻿using DataStructures.Lists;
-using System;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests 
+﻿namespace UnitTest.DataStructuresTests 
 {
+    using System;
+
+    using Xunit;
+
+    using DataStructures.Lists;
+
     public class CircularBufferTest 
     {
         
@@ -119,7 +121,7 @@ namespace UnitTest.DataStructuresTests
         }
 
         [Fact]
-        public static void TestingWritingAndReadingSimultenouslyWithoutOverriding() 
+        public static void TestingWritingAndReadingSimultaneouslyWithoutOverriding() 
         {
             var circularBuffer = new CircularBuffer<byte>(3, false);
             circularBuffer.Add(3);

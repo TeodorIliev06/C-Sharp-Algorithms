@@ -1,11 +1,9 @@
-﻿using DataStructures.Trees;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using Xunit;
+
+    using DataStructures.Trees;
+
     public static class TernarySearchTreeTest
     {
 
@@ -19,7 +17,7 @@ namespace UnitTest.DataStructuresTests
         [Fact]
         public static void DoTest()
         {
-            string[] words = new string[] { "cute", "cup", "at", "as", "he", "us", "i" };
+            string[] words = { "cute", "cup", "at", "as", "he", "us", "i" };
 
             TernarySearchTree tree = new TernarySearchTree();
 

@@ -1,9 +1,11 @@
-﻿using Algorithms.Sorting;
-using System.Linq;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System.Linq;
+
+    using Xunit;
+
+    using Algorithms.Sorting;
+
     public static class CountingSortTest
     {
         [Fact]

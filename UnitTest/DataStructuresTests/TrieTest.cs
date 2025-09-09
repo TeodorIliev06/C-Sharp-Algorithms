@@ -1,11 +1,13 @@
-﻿using System.Linq;
-using System.Diagnostics;
-using System.Collections.Generic;
-using DataStructures.Trees;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System.Linq;
+    using System.Diagnostics;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using DataStructures.Trees;
+
     public static class TrieTest
     {
         [Fact]
@@ -20,7 +22,7 @@ namespace UnitTest.DataStructuresTests
             var word_howToRobot = prefix_howTo + " a robot";
             var word_howToOmelet = prefix_howTo + " an omelet";
             var word_howToProp = prefix_howTo + " a proposal";
-            var listOfHow = new List<string>() { word_howToSand, word_howToRobot, word_howToOmelet, word_howToProp };
+            var listOfHow = new List<string> { word_howToSand, word_howToRobot, word_howToOmelet, word_howToProp };
 
             trie.Add(word_howToOmelet);
             trie.Add(word_howToSand);
@@ -38,7 +40,7 @@ namespace UnitTest.DataStructuresTests
             var word_acting = prefix_act + "ing";
             var word_actress = prefix_act + "ress";
             var word_active = prefix_act + "ive";
-            var listOfActWords = new List<string>() { word_acts, word_actor, word_acting, word_actress, word_active };
+            var listOfActWords = new List<string> { word_acts, word_actor, word_acting, word_actress, word_active };
 
             trie.Add(word_actress);
             trie.Add(word_active);
@@ -66,7 +68,7 @@ namespace UnitTest.DataStructuresTests
             Assert.Equal(someHowToWords.Count, listOfHow.Count);
 
             // Assert there are only two words under the prefix "acti" -> active, & acting
-            var someActiWords = trie.SearchByPrefix("acti").ToList<string>();
+            var someActiWords = trie.SearchByPrefix("acti").ToList();
             Assert.True(someActiWords.Count == 2);
             Assert.Contains(word_acting, someActiWords);
             Assert.Contains(word_active, someActiWords);
@@ -117,7 +119,7 @@ namespace UnitTest.DataStructuresTests
             Assert.True(removing_acting_passes);
             Assert.True(trie.Count == 8);
 
-            someActiWords = trie.SearchByPrefix("acti").ToList<string>();
+            someActiWords = trie.SearchByPrefix("acti").ToList();
             Assert.True(someActiWords.Count == 1);
             Assert.Contains(word_active, someActiWords);
 

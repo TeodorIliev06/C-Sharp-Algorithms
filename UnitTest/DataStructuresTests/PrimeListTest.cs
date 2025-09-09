@@ -1,9 +1,11 @@
-﻿using System;
-using DataStructures.Common;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+
+    using Xunit;
+
+    using DataStructures.Common;
+
     public class PrimeListTest
     {
         [Fact]

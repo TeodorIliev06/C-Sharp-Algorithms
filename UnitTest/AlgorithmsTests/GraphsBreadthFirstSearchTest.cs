@@ -1,12 +1,13 @@
-﻿using System;
-using System.Diagnostics;
-
-using DataStructures.Graphs;
-using Algorithms.Graphs;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System;
+    using System.Diagnostics;
+
+    using Xunit;
+
+    using Algorithms.Graphs;
+    using DataStructures.Graphs;
+
     public static class GraphsBreadthFirstSearchTest
     {
         [Fact]
@@ -15,7 +16,7 @@ namespace UnitTest.AlgorithmsTests
             IGraph<string> graph = new UndirectedSparseGraph<string>();
 
             // Add vertices
-            var verticesSet1 = new string[] { "a", "z", "s", "x", "d", "c", "f", "v" };
+            var verticesSet1 = new[] { "a", "z", "s", "x", "d", "c", "f", "v" };
             graph.AddVertices(verticesSet1);
 
             // Add edges
@@ -35,8 +36,8 @@ namespace UnitTest.AlgorithmsTests
             BreadthFirstSearcher.PrintAll(graph, "d");
             string searchResult = null;
             string startFromNode = "d";
-            Action<string> writeToConsole = (node) => Trace.Write(String.Format("({0}) ", node));
-            Predicate<string> searchPredicate = (node) => node == "f" || node == "c";
+            Action<string> writeToConsole = node => Trace.Write(String.Format("({0}) ", node));
+            Predicate<string> searchPredicate = node => node == "f" || node == "c";
 
             Trace.WriteLine("[*] BFS Visit All Nodes:");
             Trace.WriteLine("Graph traversal started at node: '" + startFromNode + "'");

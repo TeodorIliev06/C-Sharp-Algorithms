@@ -1,9 +1,9 @@
-﻿
-using Algorithms.Strings;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using Xunit;
+
+    using Algorithms.Strings;
+
     public static class StringPermutationTests
     {
         [Fact]
@@ -16,7 +16,7 @@ namespace UnitTest.AlgorithmsTests
 
             var one = "abcdefg";
             var two = "dabcgfe";
-            Assert.True(Permutations.IsAnargram(one, two) == true);
+            Assert.True(Permutations.IsAnargram(one, two));
 
             one = "123456";
             two = "789123";
@@ -36,7 +36,7 @@ namespace UnitTest.AlgorithmsTests
 
             one = "I am legion";    // L is small
             two = "legion I am";    // L is small
-            Assert.True(Permutations.IsAnargram(one, two) == true);
+            Assert.True(Permutations.IsAnargram(one, two));
         }
     }
 }

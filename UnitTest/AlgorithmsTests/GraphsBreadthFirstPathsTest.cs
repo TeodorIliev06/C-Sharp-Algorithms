@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using DataStructures.Graphs;
-using Algorithms.Graphs;
-using Xunit;
-using System.Diagnostics;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System;
+    using System.Diagnostics;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    using Algorithms.Graphs;
+    using DataStructures.Graphs;
+
     public static class GraphsBreadthFirstPathsTest
     {
         private static string PrintPath(IEnumerable<string> path)
@@ -27,7 +29,7 @@ namespace UnitTest.AlgorithmsTests
             IGraph<string> graph = new UndirectedSparseGraph<string>();
 
             // Add vertices
-            var verticesSet1 = new string[] { "a", "z", "s", "x", "d", "c", "f", "v", "w", "m" };
+            var verticesSet1 = new[] { "a", "z", "s", "x", "d", "c", "f", "v", "w", "m" };
             graph.AddVertices(verticesSet1);
 
             // Add edges

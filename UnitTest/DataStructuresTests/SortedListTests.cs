@@ -1,9 +1,11 @@
-﻿using DataStructures.SortedCollections;
-using System;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+
+    using Xunit;
+
+    using DataStructures.SortedCollections;
+
     public static class SortedListTests
     {
         [Fact]

@@ -1,10 +1,12 @@
-﻿using DataStructures.Heaps;
-using System;
-using System.Diagnostics;
-using Xunit;
-
-namespace UnitTest.DataStructuresTests
+﻿namespace UnitTest.DataStructuresTests
 {
+    using System;
+    using System.Diagnostics;
+
+    using Xunit;
+
+    using DataStructures.Heaps;
+
     public static class PriorityQueuesTest
     {
         internal class Process : IComparable<Process>

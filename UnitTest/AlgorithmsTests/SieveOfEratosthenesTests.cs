@@ -1,9 +1,11 @@
-﻿using Algorithms.Numeric;
-using System.Linq;
-using Xunit;
-
-namespace UnitTest.AlgorithmsTests
+﻿namespace UnitTest.AlgorithmsTests
 {
+    using System.Linq;
+
+    using Xunit;
+
+    using Algorithms.Numeric;
+
     public class SieveOfEratosthenesTests
     {
         private const int MaxNumber = 100;
