@@ -1,10 +1,10 @@
-namespace MyUnitTests.Queues
+namespace MyUnitTests.Stacks
 {
     using System;
 
     using NUnit.Framework;
 
-    using MyDataStructures.Queues.Contracts;
+    using MyDataStructures.Stacks;
 
     [TestFixture]
     public class StackTests
@@ -15,18 +15,18 @@ namespace MyUnitTests.Queues
         [SetUp]
         public void InitializeStack()
         {
-            this._stack = new MyDataStructures.Queues.Models.Stack<int>();
+            _stack = new MyDataStructures.Stacks.Stack<int>();
         }
 
         [Test]
         public void PushShouldAddElementAtTheTop()
         {
-            var count = this._random.Next(10, 30);
+            var count = _random.Next(10, 30);
             var array = new int[count];
 
             for (var i = 1; i <= count; i++)
             {
-                var randomValue = this._random.Next(100);
+                var randomValue = _random.Next(100);
                 array[count - i] = randomValue;
                 _stack.Push(randomValue);
                 Assert.AreEqual(i, _stack.Count);
@@ -40,12 +40,12 @@ namespace MyUnitTests.Queues
         [Test]
         public void PopShouldRemoveTheTopElement()
         {
-            var count = this._random.Next(10, 30);
+            var count = _random.Next(10, 30);
             var array = new int[count];
 
             for (var i = count - 1; i >= 0; i--)
             {
-                var randomValue = this._random.Next(100);
+                var randomValue = _random.Next(100);
                 array[i] = randomValue;
                 _stack.Push(randomValue);
             }
@@ -66,12 +66,12 @@ namespace MyUnitTests.Queues
         [Test]
         public void PeekShouldReturnTheTopElementWithoutRemovingIt()
         {
-            var count = this._random.Next(10, 30);
+            var count = _random.Next(10, 30);
             var array = new int[count];
 
             for (var i = count - 1; i >= 0; i--)
             {
-                var randomValue = this._random.Next(100);
+                var randomValue = _random.Next(100);
                 array[i] = randomValue;
                 _stack.Push(randomValue);
             }
@@ -93,7 +93,7 @@ namespace MyUnitTests.Queues
         [Test]
         public void ContainsShouldWorkAsExpected()
         {
-            var count = this._random.Next(10, 30);
+            var count = _random.Next(10, 30);
 
             for (var i = 0; i < count; i++)
                 _stack.Push(i);

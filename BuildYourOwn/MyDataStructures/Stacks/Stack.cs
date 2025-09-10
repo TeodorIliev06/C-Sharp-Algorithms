@@ -1,9 +1,8 @@
-﻿namespace MyDataStructures.Queues.Models
+﻿namespace MyDataStructures.Stacks
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using MyDataStructures.Queues.Contracts;
 
     public class Stack<T> : IAbstractStack<T>
     {
@@ -15,13 +14,13 @@
 
             public Node(T value)
             {
-                this.Value = value;
-                this.Next = null;
+                Value = value;
+                Next = null;
             }
 
             public Node(T value, Node next) : this(value)
             {
-                this.Next = next;
+                Next = next;
             }
         }
 
@@ -31,35 +30,35 @@
 
         public void Push(T item)
         {
-            var newTop = new Node(item, this.top);
+            var newTop = new Node(item, top);
 
-            this.top = newTop;
+            top = newTop;
 
-            this.Count++;
+            Count++;
         }
 
         public T Pop()
         {
-            this.CheckIfEmpty();
+            CheckIfEmpty();
 
-            var oldTop = this.top;
-            this.top = oldTop.Next;
+            var oldTop = top;
+            top = oldTop.Next;
 
-            this.Count--;
+            Count--;
 
             return oldTop.Value;
         }
 
         public T Peek()
         {
-            this.CheckIfEmpty();
+            CheckIfEmpty();
 
-            return this.top.Value;
+            return top.Value;
         }
 
         public bool Contains(T item)
         {
-            var node = this.top;
+            var node = top;
 
             while (node != null)
             {
@@ -76,7 +75,7 @@
 
         public IEnumerator<T> GetEnumerator()
         {
-            var node = this.top;
+            var node = top;
 
             while (node != null)
             {
@@ -86,11 +85,11 @@
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         private void CheckIfEmpty()
         {
-            if (this.top == null)
+            if (top == null)
             {
                 throw new InvalidOperationException("Stack is empty.");
             }

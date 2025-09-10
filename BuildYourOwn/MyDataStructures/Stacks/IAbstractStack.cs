@@ -1,4 +1,4 @@
-﻿namespace MyDataStructures.Queues.Contracts
+﻿namespace MyDataStructures.Stacks
 {
     using System.Collections.Generic;
 
