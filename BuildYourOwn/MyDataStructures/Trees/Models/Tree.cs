@@ -8,12 +8,11 @@
 
     public class Tree<T> : IAbstractTree<T>
     {
-        private T value;
         private List<Tree<T>> children;
 
         public Tree(T value)
         {
-            this.value = value;
+            this.Value = value;
             this.children = new List<Tree<T>>();
         }
 
@@ -26,6 +25,8 @@
                 this.children.Add(child);
             }
         }
+
+        public T Value { get; private set; }
 
         public Tree<T> Parent { get; private set; }
 
@@ -50,7 +51,7 @@
             while (queue.Count > 0)
             {
                 var subtree = queue.Dequeue();
-                result.Add(subtree.value);
+                result.Add(subtree.Value);
 
                 foreach (var child in subtree.children)
                 {
@@ -117,7 +118,7 @@
                 this.Dfs(child, result);
             }
 
-            result.Add(node.value);
+            result.Add(node.Value);
         }
 
         private Tree<T> FindNodeWithBfs(T key)
@@ -129,7 +130,7 @@
             {
                 var subtree = queue.Dequeue();
 
-                if (subtree.value.Equals(key))
+                if (subtree.Value.Equals(key))
                 {
                     return subtree;
                 }
@@ -183,14 +184,14 @@
         {
             return this.GetNodesWithDfs(tree =>
                     tree.children.Count > 0 && tree.Parent != null, this)
-                .Select(tree => tree.value);
+                .Select(tree => tree.Value);
         }
 
         public IEnumerable<T> GetLeafKeys()
         {
             return this.GetNodesWithDfs(tree =>
                     tree.children.Count == 0, this)
-                .Select(tree => tree.value);
+                .Select(tree => tree.Value);
         }
 
         public T GetDeepestKey()
@@ -212,14 +213,19 @@
                 }
             }
 
-            return deepestNode.value;
+            return deepestNode.Value;
+        }
+
+        public IEnumerable<T> GetLongestPath()
+        {
+            throw new NotImplementedException();
         }
 
         private void DfsAsString(StringBuilder sb, Tree<T> node, int indent)
         {
             sb
                 .Append(' ', indent)
-                .AppendLine(node.value!.ToString());
+                .AppendLine(node.Value!.ToString());
 
             foreach (var child in node.children)
             {
