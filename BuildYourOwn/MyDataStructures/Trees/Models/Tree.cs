@@ -1,6 +1,7 @@
 ﻿namespace MyDataStructures.Trees.Models
 {
     using System;
+    using System.Text;
     using System.Collections.Generic;
 
     using MyDataStructures.Trees.Contracts;
@@ -169,5 +170,92 @@
             this.children.Add(child);
         }
 
+        public string AsString()
+        {
+            var sb = new StringBuilder();
+
+            this.DfsAsString(sb, this, 0);
+
+            return sb.ToString().Trim();
+        }
+
+        public IEnumerable<T> GetInternalKeys()
+        {
+            return this.GetNodesWithDfs(tree =>
+                    tree.children.Count > 0 && tree.Parent != null, this)
+                .Select(tree => tree.value);
+        }
+
+        public IEnumerable<T> GetLeafKeys()
+        {
+            return this.GetNodesWithDfs(tree =>
+                    tree.children.Count == 0, this)
+                .Select(tree => tree.value);
+        }
+
+        public T GetDeepestKey()
+        {
+            var leaves = this
+                .GetNodesWithDfs(tree => tree.children.Count == 0, this);
+
+            var maxDepth = 0;
+            Tree<T> deepestNode = default;
+
+            foreach (var leaf in leaves)
+            {
+                var currentDepth = this.GetDepth(leaf);
+
+                if (currentDepth > maxDepth)
+                {
+                    maxDepth = currentDepth;
+                    deepestNode = leaf;
+                }
+            }
+
+            return deepestNode.value;
+        }
+
+        private void DfsAsString(StringBuilder sb, Tree<T> node, int indent)
+        {
+            sb
+                .Append(' ', indent)
+                .AppendLine(node.value!.ToString());
+
+            foreach (var child in node.children)
+            {
+                this.DfsAsString(sb, child, indent + 2);
+            }
+        }
+
+        private IEnumerable<Tree<T>> GetNodesWithDfs(Predicate<Tree<T>> predicate, Tree<T> node)
+        {
+            var result = new List<Tree<T>>();
+
+            if (predicate.Invoke(node))
+            {
+                result.Add(node);
+            }
+
+            foreach (var child in node.children)
+            {
+                var childNodes = this.GetNodesWithDfs(predicate, child);
+                result.AddRange(childNodes);
+            }
+
+            return result;
+        }
+
+        private int GetDepth(Tree<T> node)
+        {
+            int depth = 0;
+
+            while (node.Parent != null)
+            {
+                depth++;
+                node = node.Parent;
+            }
+
+            return depth;
+        }
     }
 }

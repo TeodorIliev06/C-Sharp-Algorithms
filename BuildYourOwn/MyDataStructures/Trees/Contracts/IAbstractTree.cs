@@ -21,5 +21,13 @@
 
         // Exercise
         IReadOnlyCollection<Tree<T>> Children { get; }
+
+        string AsString();
+
+        IEnumerable<T> GetLeafKeys();
+
+        IEnumerable<T> GetInternalKeys();
+
+        T GetDeepestKey();
     }
 }
