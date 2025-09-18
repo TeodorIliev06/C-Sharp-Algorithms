@@ -39,10 +39,10 @@
 
         public void AddEdge(int parent, int child)
         {
-            var parentNode = new IntegerTree(parent);
-            var childNode = new IntegerTree(child);
+            var parentNode = this.CreateNodeByKey(parent);
+            var childNode = this.CreateNodeByKey(child);
 
-            parentNode.AddChild(parent, childNode);
+            parentNode.AddChild(childNode);
             childNode.AddParent(parentNode);
         }
 

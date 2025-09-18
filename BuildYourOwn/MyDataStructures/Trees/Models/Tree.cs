@@ -28,6 +28,8 @@
 
         public Tree<T> Parent { get; private set; }
 
+        public IReadOnlyCollection<Tree<T>> Children => this.children.AsReadOnly();
+
         // Lab
         public void AddChild(T parentKey, Tree<T> child)
         {
@@ -161,5 +163,11 @@
         {
             this.Parent = parent;
         }
+
+        public void AddChild(Tree<T> child)
+        {
+            this.children.Add(child);
+        }
+
     }
 }
