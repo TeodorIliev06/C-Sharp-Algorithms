@@ -8,7 +8,6 @@
     public class Tree<T> : IAbstractTree<T>
     {
         private T value;
-        private Tree<T> parent;
         private List<Tree<T>> children;
 
         public Tree(T value)
@@ -22,18 +21,21 @@
         {
             foreach (var child in children)
             {
-                child.parent = this;
+                child.Parent = this;
                 this.children.Add(child);
             }
         }
 
+        public Tree<T> Parent { get; private set; }
+
+        // Lab
         public void AddChild(T parentKey, Tree<T> child)
         {
             var parentTree = this.FindNodeWithBfs(parentKey);
             this.CheckIfEmpty(parentTree);
 
             parentTree.children.Add(child);
-            child.parent = parentTree;
+            child.Parent = parentTree;
         }
 
         public IEnumerable<T> OrderBfs()
@@ -42,7 +44,7 @@
             var queue = new Queue<Tree<T>>();
             queue.Enqueue(this);
 
-            while (queue.Count > 0) 
+            while (queue.Count > 0)
             {
                 var subtree = queue.Dequeue();
                 result.Add(subtree.value);
@@ -69,7 +71,7 @@
             var node = this.FindNodeWithBfs(nodeKey);
             this.CheckIfEmpty(node);
 
-            var parentNode = node.parent;
+            var parentNode = node.Parent;
             this.CheckIfRoot(parentNode);
 
             // Remove directly the subtree and its descendents
@@ -84,10 +86,10 @@
             var secondNode = this.FindNodeWithBfs(secondKey);
             this.CheckIfEmpty(secondNode);
 
-            var firstParentNode = firstNode.parent;
+            var firstParentNode = firstNode.Parent;
             this.CheckIfRoot(firstParentNode);
 
-            var secondParentNode = secondNode.parent;
+            var secondParentNode = secondNode.Parent;
             this.CheckIfRoot(secondParentNode);
 
             // 3 cases:
@@ -99,10 +101,10 @@
             var secondNodeIndex = secondParentNode.children.IndexOf(secondNode);
 
             firstParentNode.children[firstNodeIndex] = secondNode;
-            secondNode.parent = firstParentNode;
+            secondNode.Parent = firstParentNode;
 
             secondParentNode.children[secondNodeIndex] = firstNode;
-            firstNode.parent = secondParentNode;
+            firstNode.Parent = secondParentNode;
         }
 
         private void Dfs(Tree<T> node, List<T> result)
@@ -152,6 +154,12 @@
             {
                 throw new ArgumentException();
             }
+        }
+
+        // Exercise
+        public void AddParent(Tree<T> parent)
+        {
+            this.Parent = parent;
         }
     }
 }
