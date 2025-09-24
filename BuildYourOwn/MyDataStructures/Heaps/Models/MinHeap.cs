@@ -60,7 +60,7 @@
             }
         }
 
-        private bool IsLesser(int index, int parentIndex)
+        protected bool IsLesser(int index, int parentIndex)
         {
             return this.elements[index].CompareTo(this.elements[parentIndex]) < 0;
         }
