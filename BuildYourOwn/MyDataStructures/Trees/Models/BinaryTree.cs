@@ -6,15 +6,35 @@
 
     using MyDataStructures.Trees.Contracts;
 
-    public class BinaryTree<T>(T element,
-        IAbstractBinaryTree<T> left,
-        IAbstractBinaryTree<T> right) : IAbstractBinaryTree<T>
+    public class BinaryTree<T> : IAbstractBinaryTree<T>
     {
-        public T Value { get; private set; } = element;
+        public BinaryTree(
+            T value,
+            BinaryTree<T> leftChild,
+            BinaryTree<T> rightChild)
+        {
+            this.Value = value;
+            this.LeftChild = leftChild;
+            this.RightChild = rightChild;
 
-        public IAbstractBinaryTree<T> LeftChild { get; private set; } = left;
+            if (leftChild != null)
+            {
+                this.LeftChild.Parent = this;
+            }
 
-        public IAbstractBinaryTree<T> RightChild { get; private set; } = right;
+            if (rightChild != null)
+            {
+                this.RightChild.Parent = this;
+            }
+        }
+
+        public T Value { get; }
+
+        public IAbstractBinaryTree<T> LeftChild { get; }
+
+        public IAbstractBinaryTree<T> RightChild { get; }
+
+        public IAbstractBinaryTree<T> Parent { get; set; }
 
         public string AsIndentedPreOrder(int indent)
         {
@@ -38,6 +58,67 @@
             {
                 this.RightChild.ForEachInOrder(action);
             }
+        }
+
+        public T FindLowestCommonAncestor(T first, T second)
+        {
+            /*
+             TODO:
+                1. Get all parents of first and second node
+                2. Intersect them and return the first element
+             */
+
+            var firstNodeAncestors = this.GetAncestors(first);
+            var secondNodeAncestors = this.GetAncestors(second);
+
+            return firstNodeAncestors.Intersect(secondNodeAncestors).First().Value;
+        }
+
+        private Queue<BinaryTree<T>> GetAncestors(T element)
+        {
+            var node = this.FindNodeBfs(element, this);
+
+            if (node == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            var ancestors = new Queue<BinaryTree<T>>();
+            while (node != null)
+            {
+                ancestors.Enqueue(node);
+                node = (BinaryTree<T>)node.Parent;
+            }
+
+            return ancestors;
+        }
+
+        private BinaryTree<T> FindNodeBfs(T element, BinaryTree<T> node)
+        {
+            var queue = new Queue<BinaryTree<T>>();
+            queue.Enqueue(node);
+
+            while (queue.Count > 0)
+            {
+                var subtree = queue.Dequeue();
+
+                if (element.Equals(subtree.Value))
+                {
+                    return subtree;
+                }
+
+                if (subtree.LeftChild != null)
+                {
+                    queue.Enqueue((BinaryTree<T>)subtree.LeftChild);
+                }
+
+                if (subtree.RightChild != null)
+                {
+                    queue.Enqueue((BinaryTree<T>)subtree.RightChild);
+                }
+            }
+
+            return null;
         }
 
         // L -> S -> R

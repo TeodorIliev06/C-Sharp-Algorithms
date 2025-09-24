@@ -11,6 +11,8 @@
 
         IAbstractBinaryTree<T> RightChild { get; }
 
+        IAbstractBinaryTree<T> Parent { get; set; }
+
         string AsIndentedPreOrder(int indent);
 
         IEnumerable<IAbstractBinaryTree<T>> PreOrder();
@@ -20,5 +22,7 @@
         IEnumerable<IAbstractBinaryTree<T>> PostOrder();
 
         void ForEachInOrder(Action<T> action);
+
+        T FindLowestCommonAncestor(T first, T second);
     }
 }
