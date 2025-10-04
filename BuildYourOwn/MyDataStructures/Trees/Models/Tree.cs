@@ -194,31 +194,30 @@
                 .Select(tree => tree.Value);
         }
 
-        public T GetDeepestKey()
+        public T GetDeepestKey() => this.GetDeepestNode().Value;
+
+        public IEnumerable<T> GetLongestPathToRoot()
         {
-            var leaves = this
-                .GetNodesWithDfs(tree => tree.children.Count == 0, this);
+            var deepestNode = this.GetDeepestNode();
+            var currentNode = deepestNode;
 
-            var maxDepth = 0;
-            Tree<T> deepestNode = default;
+            var result = new LinkedList<T>();
 
-            foreach (var leaf in leaves)
+            // Traverse backwards from the deepest node
+            while (currentNode != null)
             {
-                var currentDepth = this.GetDepth(leaf);
-
-                if (currentDepth > maxDepth)
-                {
-                    maxDepth = currentDepth;
-                    deepestNode = leaf;
-                }
+                result.AddFirst(currentNode.Value);
+                currentNode = currentNode.Parent;
             }
 
-            return deepestNode.Value;
+            return result;
         }
 
         public IEnumerable<T> GetLongestPath()
         {
-            throw new NotImplementedException();
+            var result = new List<T>();
+
+            return result;
         }
 
         private void DfsAsString(StringBuilder sb, Tree<T> node, int indent)
@@ -249,6 +248,28 @@
             }
 
             return result;
+        }
+
+        private Tree<T> GetDeepestNode()
+        {
+            var leaves = this
+                .GetNodesWithDfs(tree => tree.children.Count == 0, this);
+
+            var maxDepth = 0;
+            Tree<T> deepestNode = default;
+
+            foreach (var leaf in leaves)
+            {
+                var currentDepth = this.GetDepth(leaf);
+
+                if (currentDepth > maxDepth)
+                {
+                    maxDepth = currentDepth;
+                    deepestNode = leaf;
+                }
+            }
+
+            return deepestNode;
         }
 
         private int GetDepth(Tree<T> node)

@@ -29,5 +29,7 @@
         IEnumerable<T> GetInternalKeys();
 
         T GetDeepestKey();
+
+        IEnumerable<T> GetLongestPathToRoot();
     }
 }
